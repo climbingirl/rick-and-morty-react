@@ -3,11 +3,13 @@ import Home from './pages/Home/Home';
 import NotFound from './pages/NotFound/NotFound';
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import Header from './components/Header/Header';
 
 class App extends React.Component {
   render(): React.ReactNode {
     return (
       <>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
