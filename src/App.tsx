@@ -1,9 +1,10 @@
+import React from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
+import Header from './components/Header/Header';
 import About from './pages/About/About';
 import Home from './pages/Home/Home';
 import NotFound from './pages/NotFound/NotFound';
-import React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import Header from './components/Header/Header';
 
 class App extends React.Component {
   render(): React.ReactNode {
