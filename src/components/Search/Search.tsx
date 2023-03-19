@@ -14,7 +14,9 @@ class Search extends React.Component {
   }
 
   componentWillUnmount(): void {
-    localStorage.setItem('rssReactIvanovaInputValue', this.state.value);
+    const value = this.state.value;
+    if (value.trim().length === 0) return;
+    localStorage.setItem('rssReactIvanovaInputValue', value);
   }
 
   render(): React.ReactNode {
