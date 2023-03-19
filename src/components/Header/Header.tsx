@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Header.scss';
 
 class Header extends React.Component {
@@ -8,12 +8,12 @@ class Header extends React.Component {
       <header className="header">
         <div className="header__container container">
           <nav className="heder__nav">
-            <Link className="nav__link" to="/">
+            <NavLink className="nav__link" to="/">
               Home
-            </Link>
-            <Link className="nav__link" to="about">
+            </NavLink>
+            <NavLink className="nav__link" to="about">
               About
-            </Link>
+            </NavLink>
           </nav>
         </div>
       </header>

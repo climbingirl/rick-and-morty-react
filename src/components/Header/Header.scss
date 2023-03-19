@@ -9,6 +9,10 @@
     color: #868e91;
     padding-right: 25px;
 
+    &.active {
+      color: #fff;
+    }
+
     &:hover {
       color: #adb5b8;
     }
