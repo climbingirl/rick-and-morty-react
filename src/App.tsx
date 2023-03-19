@@ -10,12 +10,14 @@ class App extends React.Component {
     return (
       <>
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/404" element={<NotFound />} />
-          <Route path="/*" element={<Navigate to="/404" />} />
-        </Routes>
+        <main className="main">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/404" element={<NotFound />} />
+            <Route path="/*" element={<Navigate to="/404" />} />
+          </Routes>
+        </main>
       </>
     );
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+import './Search.scss';
 
 class Search extends React.Component {
   state: { value: string };
@@ -15,7 +16,6 @@ class Search extends React.Component {
 
   componentWillUnmount(): void {
     const value = this.state.value;
-    if (value.trim().length === 0) return;
     localStorage.setItem('rssReactIvanovaInputValue', value);
   }
 
@@ -28,6 +28,7 @@ class Search extends React.Component {
               className="search__input"
               type="text"
               value={this.state.value}
+              placeholder="Enter search text"
               onChange={this.handleChange.bind(this)}
             />
           </div>
