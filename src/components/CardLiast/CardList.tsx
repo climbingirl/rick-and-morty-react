@@ -16,7 +16,7 @@ class CardList extends React.Component {
     return (
       <div className="cards">
         <div className="cards__inner">
-          {this.props.cards.map((card: ICard) => (
+          {this.props.cards?.map((card: ICard) => (
             <Card card={card} key={card.id} />
           ))}
         </div>

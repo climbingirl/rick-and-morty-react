@@ -17,12 +17,7 @@ class Card extends React.Component {
   render(): React.ReactNode {
     return (
       <div className="card" data-testid="card">
-        <img
-          className="card__image"
-          src={this.card?.image}
-          alt={this.card?.title}
-          data-testid="card-image"
-        />
+        <img className="card__image" src={this.card?.image} alt={this.card?.title} />
         <div className="card__inner">
           <div className="card__title">{this.card?.title}</div>
           <div className="card__price">${this.card?.price.toFixed(2)}</div>
