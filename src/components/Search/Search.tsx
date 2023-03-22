@@ -4,8 +4,8 @@ import './Search.scss';
 class Search extends React.Component {
   state: { value: string };
 
-  constructor() {
-    super();
+  constructor(props: object) {
+    super(props);
     this.state = { value: '' };
   }
 

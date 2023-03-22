@@ -7,7 +7,7 @@ interface CardListProps {
   cards: ICard[];
 }
 
-class CardList extends React.Component {
+class CardList extends React.Component<CardListProps> {
   constructor(props: CardListProps) {
     super(props);
   }

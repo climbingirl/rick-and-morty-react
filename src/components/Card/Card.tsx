@@ -6,7 +6,7 @@ interface CardProps {
   card: ICard;
 }
 
-class Card extends React.Component {
+class Card extends React.Component<CardProps> {
   card: ICard;
 
   constructor(props: CardProps) {
