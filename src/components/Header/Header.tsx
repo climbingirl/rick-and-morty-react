@@ -15,6 +15,7 @@ class Header extends React.Component {
               About
             </NavLink>
           </nav>
+          <div className="header__current-page"></div>
         </div>
       </header>
     );

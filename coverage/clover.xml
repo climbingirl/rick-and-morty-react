@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1679474792734" clover="3.2.0">
-  <project timestamp="1679474792734" name="All files">
-    <metrics statements="378" coveredstatements="298" conditionals="13" coveredconditionals="6" methods="12" coveredmethods="6" elements="403" coveredelements="310" complexity="0" loc="378" ncloc="378" packages="8" files="9" classes="9"/>
+<coverage generated="1679508027079" clover="3.2.0">
+  <project timestamp="1679508027079" name="All files">
+    <metrics statements="379" coveredstatements="299" conditionals="13" coveredconditionals="6" methods="12" coveredmethods="6" elements="404" coveredelements="311" complexity="0" loc="379" ncloc="379" packages="8" files="9" classes="9"/>
     <package name="src">
       <metrics statements="186" coveredstatements="185" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="1"/>
       <file name="App.tsx" path="C:\Users\sveta\Desktop\rsschool\react\rss-react\src\App.tsx">
@@ -272,9 +272,9 @@
       </file>
     </package>
     <package name="src.components.Header">
-      <metrics statements="24" coveredstatements="24" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <metrics statements="25" coveredstatements="25" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
       <file name="Header.tsx" path="C:\Users\sveta\Desktop\rsschool\react\rss-react\src\components\Header\Header.tsx">
-        <metrics statements="24" coveredstatements="24" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <metrics statements="25" coveredstatements="25" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -299,6 +299,7 @@
         <line num="22" count="1" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.components.Search">
