@@ -1,0 +1,16 @@
+.search__form {
+  margin-bottom: 35px;
+
+  .search__inner {
+    width: 400px;
+    margin: 0 auto;
+  }
+
+  .search__input {
+    width: inherit;
+    border: 1px solid #768297;
+    padding: 10px;
+    border-radius: 15px;
+    color: #747985;
+  }
+}
