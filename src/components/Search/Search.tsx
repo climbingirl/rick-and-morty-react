@@ -1,9 +1,11 @@
 import React from 'react';
 import './Search.scss';
 
-class Search extends React.Component {
-  state: { value: string };
+interface SearchState {
+  value: string;
+}
 
+class Search extends React.Component<object, SearchState> {
   constructor(props: object) {
     super(props);
     this.state = { value: '' };
@@ -19,7 +21,15 @@ class Search extends React.Component {
     localStorage.setItem('rssReactIvanovaInputValue', value);
   }
 
-  render(): React.ReactNode {
+  handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
+    this.setState({ value: e.target.value });
+  }
+
+  handleSubmit(e: React.FormEvent): void {
+    e.preventDefault();
+  }
+
+  render() {
     return (
       <>
         <form className="search__form" onSubmit={this.handleSubmit.bind(this)}>
@@ -35,14 +45,6 @@ class Search extends React.Component {
         </form>
       </>
     );
-  }
-
-  handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
-    this.setState({ value: e.target.value });
-  }
-
-  handleSubmit(e: React.FormEvent): void {
-    e.preventDefault();
   }
 }
 

@@ -14,7 +14,7 @@ class Card extends React.Component<CardProps> {
     this.card = props.card;
   }
 
-  render(): React.ReactNode {
+  render() {
     return (
       <div className="card" data-testid="card">
         <img className="card__image" src={this.card?.image} alt={this.card?.title} />

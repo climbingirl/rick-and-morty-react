@@ -4,7 +4,7 @@ import Search from '../../components/Search/Search';
 import { cards } from '../../data';
 
 class Home extends React.Component {
-  render(): React.ReactNode {
+  render() {
     return (
       <div className="home">
         <div className="home__container container">

@@ -1,7 +1,7 @@
 import React from 'react';
 
 class About extends React.Component {
-  render(): React.ReactNode {
+  render() {
     return (
       <div className="about">
         <div className="about__container container">

@@ -8,17 +8,11 @@ interface CardListProps {
 }
 
 class CardList extends React.Component<CardListProps> {
-  constructor(props: CardListProps) {
-    super(props);
-  }
-
-  render(): React.ReactNode {
+  render() {
     return (
       <div className="cards">
         <div className="cards__inner">
-          {this.props.cards?.map((card: ICard) => (
-            <Card card={card} key={card.id} />
-          ))}
+          {this.props.cards?.map((card) => card && <Card card={card} key={card.id} />)}
         </div>
       </div>
     );

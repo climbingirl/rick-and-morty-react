@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './Header.scss';
 
 class Header extends React.Component {
-  render(): React.ReactNode {
+  render() {
     return (
       <header className="header">
         <div className="header__container container">
@@ -13,6 +13,9 @@ class Header extends React.Component {
             </NavLink>
             <NavLink className="nav__link" to="about">
               About
+            </NavLink>
+            <NavLink className="nav__link" to="create">
+              Create
             </NavLink>
           </nav>
           <div className="header__current-page"></div>
