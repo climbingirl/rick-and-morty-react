@@ -2,19 +2,44 @@
   padding: 30px 0;
   background-color: #032541;
 
-  .nav__link {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 20px;
     line-height: 25px;
     font-weight: 600;
+  }
+
+  .nav__link {
     color: #868e91;
     padding-right: 25px;
 
+    &::first-letter {
+      text-transform: uppercase;
+    }
+
     &.active {
       color: #fff;
+      &:hover {
+        color: #fff;
+      }
     }
 
     &:hover {
       color: #adb5b8;
+    }
+  }
+
+  &__current-title {
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 600;
+    margin: 0;
+    color: #c0c8ca;
+
+    &::first-letter {
+      text-transform: uppercase;
     }
   }
 }

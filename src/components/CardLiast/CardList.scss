@@ -1,8 +1,16 @@
 .cards {
-  &__inner {
+  &__list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     row-gap: 25px;
+  }
+
+  &__list_empty {
+    margin-top: 100px;
+    font-size: 20px;
+    line-height: 25px;
+    color: #33899d;
+    text-align: center;
   }
 }

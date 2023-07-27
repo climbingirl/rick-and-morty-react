@@ -1,5 +1,5 @@
 import React from 'react';
-import { ICard } from '../../models';
+import { ICard } from '../../types/models';
 import './Card.scss';
 
 interface CardProps {
@@ -16,7 +16,7 @@ class Card extends React.Component<CardProps> {
 
   render() {
     return (
-      <div className="card" data-testid="card">
+      <div className="card" role="listitem">
         <img className="card__image" src={this.card?.image} alt={this.card?.title} />
         <div className="card__inner">
           <div className="card__title">{this.card?.title}</div>

@@ -6,12 +6,12 @@ import { cards } from '../../data';
 class Home extends React.Component {
   render() {
     return (
-      <div className="home">
-        <div className="home__container container">
-          <Search />
+      <section className="home container" aria-label="Home page">
+        <Search />
+        <div className="cards">
           <CardList cards={cards} />
         </div>
-      </div>
+      </section>
     );
   }
 }

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/21</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/21</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -88,41 +88,41 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 &nbsp;
 class About extends React.Component {
-<span class="fstat-no" title="function not covered" >  render(): React.ReactNode {</span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div className="about"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;div className="about__container container"&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;h2 className="about__title title-h2"&gt;About page&lt;/h2&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;div className="about__text"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis unde rem facilis, sint</span>
-<span class="cstat-no" title="statement not covered" >            autem incidunt nemo ex repellendus saepe sapiente deleniti explicabo, magnam facere</span>
-<span class="cstat-no" title="statement not covered" >            quibusdam ab eos sit modi quidem earum qui. Voluptas libero aliquid maxime in ut optio</span>
-<span class="cstat-no" title="statement not covered" >            facilis iste reiciendis numquam nisi, impedit veniam omnis vero quasi fuga.</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >    );</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  render() {
+    return (
+      &lt;div className="about" data-testid="about-page"&gt;
+        &lt;div className="about__container container"&gt;
+          &lt;h2 className="about__title title-h2"&gt;About us&lt;/h2&gt;
+          &lt;div className="about__text"&gt;
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis unde rem facilis, sint
+            autem incidunt nemo ex repellendus saepe sapiente deleniti explicabo, magnam facere
+            quibusdam ab eos sit modi quidem earum qui. Voluptas libero aliquid maxime in ut optio
+            facilis iste reiciendis numquam nisi, impedit veniam omnis vero quasi fuga.
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
 }
 &nbsp;
 export default About;
@@ -133,7 +133,7 @@ export default About;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-22T18:00:27.034Z
+                at 2023-07-21T14:23:20.662Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

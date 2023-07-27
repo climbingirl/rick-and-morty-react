@@ -1,4 +1,4 @@
-import { ICard } from './models';
+import { ICard } from './types/models';
 
 export const cards: ICard[] = [
   {

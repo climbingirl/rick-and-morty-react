@@ -1,10 +1,10 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Card from './Card';
-import { ICard } from '../../models';
+import { ICard } from '../../types/models';
 
 describe('Card', () => {
-  const tsetCard: ICard = {
+  const testCard: ICard = {
     id: 1,
     title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
     price: 109.95,
@@ -18,22 +18,23 @@ describe('Card', () => {
     },
   };
 
-  it('Renders image', () => {
-    render(<Card card={tsetCard} key="0" />);
-    const card = screen.getByTestId('card');
+  beforeEach(() => {
+    render(<Card card={testCard} key="0" />);
+  });
+
+  it('renders image', () => {
+    const card = screen.getByRole('listitem');
     const image = screen.getByRole('img');
     expect(card).toContainElement(image);
   });
 
-  it('Has a title', () => {
-    render(<Card card={tsetCard} key="0" />);
-    const card = screen.getByTestId('card');
-    expect(card).toHaveTextContent(tsetCard.title);
+  it('has a title', () => {
+    const card = screen.getByRole('listitem');
+    expect(card).toHaveTextContent(testCard.title);
   });
 
-  it('Has a price', () => {
-    render(<Card card={tsetCard} key="0" />);
-    const card = screen.getByTestId('card');
-    expect(card).toHaveTextContent(tsetCard.price.toFixed(2));
+  it('has a price', () => {
+    const card = screen.getByRole('listitem');
+    expect(card).toHaveTextContent(testCard.price.toFixed(2));
   });
 });

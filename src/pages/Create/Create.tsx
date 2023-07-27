@@ -4,9 +4,9 @@ import CreateForm from '../../components/CreateForm/CreateForm';
 class Create extends React.Component {
   render() {
     return (
-      <div className="create container">
+      <section className="create container" aria-label="Create product page">
         <CreateForm />
-      </div>
+      </section>
     );
   }
 }
