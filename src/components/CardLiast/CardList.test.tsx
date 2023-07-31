@@ -20,15 +20,17 @@ describe('CardList', () => {
     },
   ];
 
-  it('renders list', () => {
+  it('renders cards list if cards array has elements', () => {
     render(<CardList cards={testCards} />);
     const cardList = screen.getByRole('list', { name: 'Product cards list' });
+    const cards = screen.getAllByRole('listitem');
     expect(cardList).toBeInTheDocument();
+    expect(cardList).toContainElement(cards[0]);
   });
 
   it('renders "Products not found" text if cards array is empty', () => {
     render(<CardList cards={[]} />);
-    const emptyList = screen.getByTestId('cards-empty');
+    const emptyList = screen.getByRole('list');
     expect(emptyList).toHaveTextContent('Products not found');
   });
 });

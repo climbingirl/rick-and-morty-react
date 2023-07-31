@@ -1,12 +1,12 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import setupRouter from '../../test/setupRouter';
+import { describe, it, expect, beforeEach } from 'vitest';
+import { screen } from '@testing-library/react';
+import renderwithRouter from '../../test/renderWithRouter';
 import App from './App';
 
 describe('App', () => {
-  it('renders by router', () => {
-    render(setupRouter(<App />));
-    const app = screen.getByTestId('app');
-    expect(app).toBeInTheDocument();
+  it('renders Header component', () => {
+    renderwithRouter(<App />);
+    const header = screen.getByRole('banner');
+    expect(header).toBeInTheDocument();
   });
 });

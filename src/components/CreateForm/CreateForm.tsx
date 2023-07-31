@@ -42,7 +42,7 @@ class CreateForm extends React.Component {
   render() {
     return (
       <div className="create__form-inner">
-        <form className="create__form" onSubmit={this.submitForm}>
+        <form className="create__form" onSubmit={this.submitForm} aria-label="Create product">
           <InputGender forwRef={this.elements.gender} />
           <InputText forwRef={this.elements.inputName} name="name" />
           <InputText forwRef={this.elements.inputSurname} name="surname" />

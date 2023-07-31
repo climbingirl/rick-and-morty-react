@@ -22,7 +22,7 @@ describe('Card', () => {
     render(<Card card={testCard} key="0" />);
   });
 
-  it('renders image', () => {
+  it('has an image', () => {
     const card = screen.getByRole('listitem');
     const image = screen.getByRole('img');
     expect(card).toContainElement(image);

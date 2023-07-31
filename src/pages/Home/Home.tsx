@@ -8,9 +8,7 @@ class Home extends React.Component {
     return (
       <section className="home container" aria-label="Home page">
         <Search />
-        <div className="cards">
-          <CardList cards={cards} />
-        </div>
+        <CardList cards={cards} />
       </section>
     );
   }

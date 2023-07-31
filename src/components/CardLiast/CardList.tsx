@@ -9,19 +9,19 @@ interface CardListProps {
 
 class CardList extends React.Component<CardListProps> {
   render() {
-    if (!this.props.cards.length) {
-      return (
-        <div className="cards__list_empty" data-testid="cards-empty">
-          Products not found
-        </div>
-      );
-    }
-
     return (
-      <div className="cards__list" role="list" aria-label="Product cards list">
-        {this.props.cards.map((card) => (
-          <Card card={card} key={card.id} />
-        ))}
+      <div className="cards">
+        {!this.props.cards.length ? (
+          <div className="cards__list-empty" role="list" aria-label="Products not found">
+            Products not found
+          </div>
+        ) : (
+          <div className="cards__list" role="list" aria-label="Product cards list">
+            {this.props.cards.map((card) => (
+              <Card card={card} key={card.id} />
+            ))}
+          </div>
+        )}
       </div>
     );
   }

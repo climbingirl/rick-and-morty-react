@@ -1,15 +1,15 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import ROUTES from '../../types/routes.types';
 import Header from './Header';
-import setupRouter, { host } from '../../test/setupRouter';
+import renderwithRouter, { host } from '../../test/renderWithRouter';
 
 describe('Header', () => {
   beforeEach(() => {
-    render(setupRouter(<Header />, ROUTES.ROOT));
+    renderwithRouter(<Header />, ROUTES.ROOT);
   });
 
-  it('renders navigation menu', () => {
+  it('has navigation menu', () => {
     const header = screen.getByRole('banner');
     const navigation = screen.getByRole('navigation');
     expect(header).toContainElement(navigation);
@@ -22,6 +22,6 @@ describe('Header', () => {
 
   it('has the "home page" current title ', () => {
     const title = screen.getByRole('heading', { level: 2 });
-    expect(title.innerHTML).toBe('home page');
+    expect(title).toHaveTextContent('home page');
   });
 });

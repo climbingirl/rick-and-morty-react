@@ -1,19 +1,25 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import setupRouter from '../../test/setupRouter';
+import { screen } from '@testing-library/react';
+import renderwithRouter from '../../test/renderWithRouter';
 import ROUTES from '../../types/routes.types';
 import NotFound from './NotFound';
 
 describe('NotFound', () => {
   it('renders by "404" route', () => {
-    render(setupRouter(<NotFound />, ROUTES.NOT_FOUND));
+    renderwithRouter(<NotFound />, ROUTES.NOT_FOUND);
     const notFoundPage = screen.getByRole('region', { name: 'Not found page' });
-    expect(notFoundPage).toHaveTextContent('404');
+    expect(notFoundPage).toBeInTheDocument();
   });
 
   it('renders by invalid route', () => {
-    render(setupRouter(<NotFound />, 'this-route-does-not-exist'));
+    renderwithRouter(<NotFound />, 'this-route-does-not-exist');
     const notFoundPage = screen.getByRole('region', { name: 'Not found page' });
-    expect(notFoundPage).toHaveTextContent('404');
+    expect(notFoundPage).toBeInTheDocument();
+  });
+
+  it('has "404" title', () => {
+    renderwithRouter(<NotFound />, ROUTES.NOT_FOUND);
+    const title = screen.getByRole('heading', { level: 2 });
+    expect(title).toHaveTextContent('404');
   });
 });
