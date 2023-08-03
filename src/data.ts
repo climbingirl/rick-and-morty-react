@@ -1,6 +1,6 @@
-import { ICard } from './types/models';
+import { Product } from './types/models';
 
-export const cards: ICard[] = [
+export const products: Product[] = [
   {
     id: 1,
     title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',

@@ -5,10 +5,14 @@ interface InputGenderProps {
   forwRef: React.RefObject<HTMLInputElement>[];
 }
 
-class InputGender extends React.Component<InputGenderProps> {
+class InputsGender extends React.Component<InputGenderProps> {
   render() {
     return (
-      <div className="create__line create__line_gender">
+      <div
+        className="create__line create__line_gender"
+        role="radiogroup"
+        aria-label="Choose gender"
+      >
         <label htmlFor="input-male">Male</label>
         <input
           className="create__input"
@@ -28,10 +32,9 @@ class InputGender extends React.Component<InputGenderProps> {
           value="female"
           ref={this.props.forwRef[1]}
         />
-        <ErrorMessage error="Error message" />
       </div>
     );
   }
 }
 
-export default InputGender;
+export default InputsGender;

@@ -1,4 +1,4 @@
-export interface ICard {
+export interface Product {
   id: number;
   title: string;
   price: number;
@@ -9,4 +9,13 @@ export interface ICard {
     rate: number;
     count: number;
   };
+}
+
+export interface CreateElement {
+  gender: string;
+  name: string;
+  surname: string;
+  birthDate: string;
+  country: string;
+  photo: string;
 }

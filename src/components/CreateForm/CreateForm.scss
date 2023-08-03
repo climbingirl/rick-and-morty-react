@@ -13,9 +13,10 @@
   margin: 0 auto;
 
   &-btn {
+    display: block;
     width: 120px;
     padding: 3px;
-    margin-top: 10px;
+    margin: 20px auto;
     border: 1px solid #33899d;
     border-radius: 3px;
     color: #33899d;
@@ -27,6 +28,14 @@
       background: #e8eee9;
       color: #177423;
       border-color: #177423;
+    }
+
+    &:disabled {
+      cursor: auto;
+      background: #e8edee;
+      border: 1px solid #485658;
+      color: #485658;
+      opacity: 50%;
     }
   }
 }
@@ -46,6 +55,17 @@
       margin-left: -10px;
     }
   }
+
+  &_consent {
+    margin-top: 20px;
+    justify-content: center;
+
+    .create__box {
+      max-width: none;
+      flex-basis: 70%;
+      margin-bottom: 20px;
+    }
+  }
 }
 
 .create__label {
@@ -55,7 +75,7 @@
 
 .create__box {
   max-width: 300px;
-  width: 100%;;
+  width: 100%;
 
   .create__select,
   .create__input {

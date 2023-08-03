@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { ICard } from '../../types/models';
-import CardList from './CardList';
+import { Product } from '../../types/models';
+import ProductList from './ProductList';
 
-describe('CardList', () => {
-  const testCards: ICard[] = [
+describe('ProductList', () => {
+  const testProducts: Product[] = [
     {
       id: 1,
       title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
@@ -20,16 +20,16 @@ describe('CardList', () => {
     },
   ];
 
-  it('renders cards list if cards array has elements', () => {
-    render(<CardList cards={testCards} />);
-    const cardList = screen.getByRole('list', { name: 'Product cards list' });
-    const cards = screen.getAllByRole('listitem');
-    expect(cardList).toBeInTheDocument();
-    expect(cardList).toContainElement(cards[0]);
+  it('renders products list if products array has elements', () => {
+    render(<ProductList products={testProducts} />);
+    const list = screen.getByRole('list', { name: 'Product cards list' });
+    const products = screen.getAllByRole('listitem');
+    expect(list).toBeInTheDocument();
+    expect(list).toContainElement(products[0]);
   });
 
   it('renders "Products not found" text if cards array is empty', () => {
-    render(<CardList cards={[]} />);
+    render(<ProductList products={[]} />);
     const emptyList = screen.getByRole('list');
     expect(emptyList).toHaveTextContent('Products not found');
   });

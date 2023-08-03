@@ -6,7 +6,11 @@ interface ErrorMessageProps {
 
 class ErrorMessage extends React.Component<ErrorMessageProps> {
   render() {
-    return <div className="error-message">{this.props.error}</div>;
+    return (
+      <div className="error-message" role="alert">
+        {this.props.error}
+      </div>
+    );
   }
 }
 

@@ -1,7 +1,11 @@
 import React from 'react';
 import ErrorMessage from './ErrorMessage';
 
-class SelectCountry extends React.Component {
+interface CountrySelectProps {
+  forwRef: React.RefObject<HTMLSelectElement>;
+}
+
+class CountrySelect extends React.Component<CountrySelectProps> {
   render() {
     return (
       <div className="create__line">
@@ -9,8 +13,15 @@ class SelectCountry extends React.Component {
           Country
         </label>
         <div className="create__box">
-          <select className="create__select" id="input-country" defaultValue={undefined}>
-            <option>choose your country</option>
+          <select
+            className="create__select"
+            id="input-country"
+            defaultValue=""
+            ref={this.props.forwRef}
+          >
+            <option value="" disabled>
+              -- choose your country --
+            </option>
             <option>Thailand</option>
             <option>USA</option>
             <option>Russia</option>
@@ -23,4 +34,4 @@ class SelectCountry extends React.Component {
   }
 }
 
-export default SelectCountry;
+export default CountrySelect;

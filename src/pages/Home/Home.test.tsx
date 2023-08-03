@@ -14,10 +14,10 @@ describe('Home', () => {
     expect(homePage).toBeInTheDocument();
   });
 
-  it('renders Search and CardList components', () => {
+  it('renders Search and ProductList components', () => {
     const search = screen.getByRole('search', { name: 'Product cards' });
-    const cardList = screen.getByRole('list');
+    const productList = screen.getByRole('list');
     expect(search).toBeInTheDocument();
-    expect(cardList).toBeInTheDocument();
+    expect(productList).toBeInTheDocument();
   });
 });

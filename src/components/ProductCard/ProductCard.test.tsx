@@ -1,10 +1,10 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import Card from './Card';
-import { ICard } from '../../types/models';
+import ProductCard from './ProductCard';
+import { Product } from '../../types/models';
 
-describe('Card', () => {
-  const testCard: ICard = {
+describe('ProductCard', () => {
+  const testProduct: Product = {
     id: 1,
     title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
     price: 109.95,
@@ -19,7 +19,7 @@ describe('Card', () => {
   };
 
   beforeEach(() => {
-    render(<Card card={testCard} key="0" />);
+    render(<ProductCard product={testProduct} key="0" />);
   });
 
   it('has an image', () => {
@@ -30,11 +30,11 @@ describe('Card', () => {
 
   it('has a title', () => {
     const card = screen.getByRole('listitem');
-    expect(card).toHaveTextContent(testCard.title);
+    expect(card).toHaveTextContent(testProduct.title);
   });
 
   it('has a price', () => {
     const card = screen.getByRole('listitem');
-    expect(card).toHaveTextContent(testCard.price.toFixed(2));
+    expect(card).toHaveTextContent(testProduct.price.toFixed(2));
   });
 });
