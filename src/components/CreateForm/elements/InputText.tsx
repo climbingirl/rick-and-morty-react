@@ -3,6 +3,7 @@ import ErrorMessage from './ErrorMessage';
 
 interface InputTextProps {
   name: string;
+  error: string | null;
   forwRef: React.RefObject<HTMLInputElement>;
 }
 
@@ -28,7 +29,7 @@ class InputText extends React.Component<InputTextProps> {
             placeholder={'Enter your ' + this.name}
             ref={this.props.forwRef}
           />
-          <ErrorMessage error="Error message" />
+          <ErrorMessage error={this.props.error} />
         </div>
       </div>
     );

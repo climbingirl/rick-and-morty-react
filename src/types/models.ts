@@ -18,4 +18,5 @@ export interface CreateElement {
   birthDate: string;
   country: string;
   photo: string;
+  consent: boolean;
 }

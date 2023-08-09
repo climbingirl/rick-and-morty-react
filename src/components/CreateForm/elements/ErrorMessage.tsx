@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface ErrorMessageProps {
-  error: string;
+  error: string | null;
 }
 
 class ErrorMessage extends React.Component<ErrorMessageProps> {

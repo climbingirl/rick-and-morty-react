@@ -2,6 +2,7 @@ import React from 'react';
 import ErrorMessage from './ErrorMessage';
 
 interface InputDateProps {
+  error: string | null;
   forwRef: React.RefObject<HTMLInputElement>;
 }
 
@@ -20,7 +21,7 @@ class InputDate extends React.Component<InputDateProps> {
             ref={this.props.forwRef}
             role="textbox"
           />
-          <ErrorMessage error="Error message" />
+          <ErrorMessage error={this.props.error} />
         </div>
       </div>
     );

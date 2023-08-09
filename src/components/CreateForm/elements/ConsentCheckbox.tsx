@@ -2,6 +2,7 @@ import React from 'react';
 import ErrorMessage from './ErrorMessage';
 
 interface ConsentCheckboxProps {
+  error: string | null;
   forwRef: React.RefObject<HTMLInputElement>;
 }
 
@@ -17,9 +18,9 @@ class ConsentCheckbox extends React.Component<ConsentCheckboxProps> {
         />
         <div className="create__box">
           <label className="create__label" htmlFor="consent-checkbox">
-            I consent to my personal data
+            I agree to the processing of my personal data
           </label>
-          <ErrorMessage error="Error message" />
+          <ErrorMessage error={this.props.error} />
         </div>
       </div>
     );

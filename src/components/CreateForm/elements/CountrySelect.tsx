@@ -2,6 +2,7 @@ import React from 'react';
 import ErrorMessage from './ErrorMessage';
 
 interface CountrySelectProps {
+  error: string | null;
   forwRef: React.RefObject<HTMLSelectElement>;
 }
 
@@ -27,7 +28,7 @@ class CountrySelect extends React.Component<CountrySelectProps> {
             <option>Russia</option>
             <option>China</option>
           </select>
-          <ErrorMessage error="Error message" />
+          <ErrorMessage error={this.props.error} />
         </div>
       </div>
     );

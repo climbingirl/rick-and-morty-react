@@ -89,4 +89,7 @@
   line-height: 15px;
   padding-top: 5px;
   color: #900;
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
