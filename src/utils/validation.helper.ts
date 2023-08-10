@@ -19,7 +19,7 @@ export function validateBirthDate(data: string): string | null {
   if (!date) {
     error = `date is required`;
   } else if (date > currentDate) {
-    error = `date must not be greater than the current date`;
+    error = `the date mustn't be a future one`;
   }
 
   return error;

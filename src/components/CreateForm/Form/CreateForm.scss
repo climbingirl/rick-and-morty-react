@@ -3,7 +3,7 @@
   border: 1px solid #e8edee;
   border-radius: 5px;
   padding: 30px;
-  margin: 0 auto;
+  margin: 0 auto 20px;
   font-size: 17px;
   color: #33899d;
 }
@@ -16,7 +16,7 @@
     display: block;
     width: 120px;
     padding: 3px;
-    margin: 20px auto;
+    margin: 10px auto;
     border: 1px solid #33899d;
     border-radius: 3px;
     color: #33899d;
@@ -59,11 +59,12 @@
   &_consent {
     margin-top: 20px;
     justify-content: center;
+    flex-wrap: nowrap;
 
     .create__box {
       max-width: none;
-      flex-basis: 70%;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      flex-basis: 80%;
     }
   }
 }

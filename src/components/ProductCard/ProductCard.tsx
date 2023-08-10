@@ -16,7 +16,7 @@ class ProductCard extends React.Component<ProductCardProps> {
 
   render() {
     return (
-      <div className="card" role="listitem">
+      <div className="product-card" role="listitem">
         <img className="card__image" src={this.product?.image} alt={this.product?.title} />
         <div className="card__inner">
           <div className="card__title">{this.product?.title}</div>

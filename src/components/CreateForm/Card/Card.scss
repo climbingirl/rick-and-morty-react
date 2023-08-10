@@ -1,0 +1,35 @@
+.create-card {
+  max-width: 185px;
+  border: 1px solid #e8edee;
+  border-radius: 4px;
+  padding: 8px 10px;
+
+  .card {
+    &__photo {
+    display: block;
+    width: 165px;
+    height: 165px;
+    object-fit: cover;
+    margin: 0 auto;
+    margin-bottom: 13px;
+    }
+
+    &__title {
+      font-size: 17px;
+      line-height: 25px;
+      font-weight: 500;
+      color: #9d5d33;;
+      text-align: center;
+      margin-bottom: 10px;
+      text-transform: capitalize;
+    }
+
+    &__line {
+      margin-bottom: 5px;
+    }
+
+    &__info {
+      color: #33899d;
+    }
+  }
+}

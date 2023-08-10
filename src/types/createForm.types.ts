@@ -1,4 +1,5 @@
 export interface CreateFormRefElements {
+  createForm: React.RefObject<HTMLFormElement>;
   gendersRadio: React.RefObject<HTMLInputElement>[];
   nameInput: React.RefObject<HTMLInputElement>;
   surnameInput: React.RefObject<HTMLInputElement>;

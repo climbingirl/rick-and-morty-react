@@ -1,3 +1,5 @@
+export type EmptyProps = Record<string, never>;
+
 export interface Product {
   id: number;
   title: string;

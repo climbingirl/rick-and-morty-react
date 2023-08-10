@@ -1,23 +1,27 @@
 import React from 'react';
-import InputDate from './elements/InputDate';
-import InputText from './elements/InputText';
-import InputFile from './elements/InputFile';
-import InputsGender from './elements/InputsGender';
-import CountrySelect from './elements/CountrySelect';
-import ConsentCheckbox from './elements/ConsentCheckbox';
-import { CreateFormErrors, CreateFormRefElements } from '../../types/createForm.types';
-import { CreateElement } from '../../types/models';
-import { validateBirthDate, validateName } from '../../utils/validation.helper';
+import InputDate from '../elements/InputDate';
+import InputText from '../elements/InputText';
+import InputFile from '../elements/InputFile';
+import InputsGender from '../elements/InputsGender';
+import CountrySelect from '../elements/CountrySelect';
+import ConsentCheckbox from '../elements/ConsentCheckbox';
+import { CreateFormErrors, CreateFormRefElements } from '../../../types/createForm.types';
+import { CreateElement } from '../../../types/models';
+import { validateBirthDate, validateName } from '../../../utils/validation.helper';
 import './CreateForm.scss';
+
+interface CreateFormProps {
+  onCardCreate: (card: CreateElement) => void;
+}
 
 interface CreateFormState {
   errors: CreateFormErrors;
 }
 
-class CreateForm extends React.Component<Record<string, never>, CreateFormState> {
+class CreateForm extends React.Component<CreateFormProps, CreateFormState> {
   elements: CreateFormRefElements;
 
-  constructor(props: Record<string, never>) {
+  constructor(props: CreateFormProps) {
     super(props);
     this.state = {
       errors: {
@@ -30,6 +34,7 @@ class CreateForm extends React.Component<Record<string, never>, CreateFormState>
       },
     };
     this.elements = {
+      createForm: React.createRef<HTMLFormElement>(),
       gendersRadio: [React.createRef<HTMLInputElement>(), React.createRef<HTMLInputElement>()],
       nameInput: React.createRef<HTMLInputElement>(),
       surnameInput: React.createRef<HTMLInputElement>(),
@@ -58,6 +63,9 @@ class CreateForm extends React.Component<Record<string, never>, CreateFormState>
     const { isValid, errors } = this.validateFormData(formData);
     if (!isValid) {
       this.setState({ errors });
+    } else {
+      this.elements.createForm.current?.reset();
+      this.props.onCardCreate(formData);
     }
   }
 
@@ -77,7 +85,12 @@ class CreateForm extends React.Component<Record<string, never>, CreateFormState>
   render() {
     return (
       <div className="create__form-inner">
-        <form className="create__form" onSubmit={this.handleSubmit} aria-label="Create product">
+        <form
+          className="create__form"
+          onSubmit={this.handleSubmit}
+          aria-label="Create product"
+          ref={this.elements.createForm}
+        >
           <InputsGender forwRef={this.elements.gendersRadio} />
           <InputText forwRef={this.elements.nameInput} name="name" error={this.state.errors.name} />
           <InputText
