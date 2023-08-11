@@ -16,6 +16,7 @@ interface CreateFormProps {
 
 interface CreateFormState {
   errors: CreateFormErrors;
+  isStatusShow: boolean;
 }
 
 class CreateForm extends React.Component<CreateFormProps, CreateFormState> {
@@ -32,6 +33,7 @@ class CreateForm extends React.Component<CreateFormProps, CreateFormState> {
         photo: null,
         consent: null,
       },
+      isStatusShow: false,
     };
     this.elements = {
       createForm: React.createRef<HTMLFormElement>(),
@@ -44,6 +46,14 @@ class CreateForm extends React.Component<CreateFormProps, CreateFormState> {
       consentCheckbox: React.createRef<HTMLInputElement>(),
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidUpdate() {
+    if (this.state.isStatusShow) {
+      setTimeout(() => {
+        this.setState({ isStatusShow: false });
+      }, 3000);
+    }
   }
 
   handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -64,7 +74,9 @@ class CreateForm extends React.Component<CreateFormProps, CreateFormState> {
     if (!isValid) {
       this.setState({ errors });
     } else {
+      this.setState({ errors });
       this.elements.createForm.current?.reset();
+      this.setState({ isStatusShow: true });
       this.props.onCardCreate(formData);
     }
   }
@@ -109,6 +121,9 @@ class CreateForm extends React.Component<CreateFormProps, CreateFormState> {
             Submit
           </button>
         </form>
+        <div className="create__data-status" role="status">
+          {this.state.isStatusShow && 'The data has been saved'}
+        </div>
       </div>
     );
   }
