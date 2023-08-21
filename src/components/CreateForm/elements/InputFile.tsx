@@ -17,7 +17,7 @@ class InputFile extends React.Component<InputFileProps> {
 
   render() {
     return (
-      <div className="create__line">
+      <div className="create__line" data-testid="file-field">
         <label className="create__label" htmlFor="input-photo">
           Your photo
         </label>
@@ -28,7 +28,7 @@ class InputFile extends React.Component<InputFileProps> {
             type="file"
             accept="image/*"
             ref={this.photoInput}
-            role="button"
+            data-testId="file"
           />
           <button
             className="create__btn-photo"

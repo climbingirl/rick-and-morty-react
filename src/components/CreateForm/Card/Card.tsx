@@ -16,7 +16,7 @@ class Card extends React.Component<CardProps> {
 
   render() {
     return (
-      <div className="create-card" role="listitem">
+      <div className="create-card" role="listitem" aria-label="Card">
         <img className="card__photo" src={this.card?.photo} alt={this.card?.name} />
         <div className="card__inner">
           <div className="card__title">{this.card?.name + ' ' + this.card?.surname}</div>

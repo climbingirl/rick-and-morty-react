@@ -9,7 +9,7 @@ interface CountrySelectProps {
 class CountrySelect extends React.Component<CountrySelectProps> {
   render() {
     return (
-      <div className="create__line">
+      <div className="create__line" data-testid="country-field">
         <label className="create__label" htmlFor="input-country">
           Country
         </label>

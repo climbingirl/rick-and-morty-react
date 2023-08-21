@@ -9,7 +9,7 @@ interface InputDateProps {
 class InputDate extends React.Component<InputDateProps> {
   render() {
     return (
-      <div className="create__line">
+      <div className="create__line" data-testid="date-field">
         <label className="create__label" htmlFor="input-date">
           Date of birth
         </label>

@@ -17,7 +17,7 @@ class InputText extends React.Component<InputTextProps> {
 
   render() {
     return (
-      <div className="create__line">
+      <div className="create__line" data-testid="text-field">
         <label className="create__label" htmlFor={`input-${this.name}`}>
           {'Your ' + this.name}
         </label>

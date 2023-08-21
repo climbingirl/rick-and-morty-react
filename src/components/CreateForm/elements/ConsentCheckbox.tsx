@@ -9,7 +9,7 @@ interface ConsentCheckboxProps {
 class ConsentCheckbox extends React.Component<ConsentCheckboxProps> {
   render() {
     return (
-      <div className="create__line create__line_consent">
+      <div className="create__line create__line_consent" data-testid="consent-field">
         <input
           className="create__input"
           id="consent-checkbox"

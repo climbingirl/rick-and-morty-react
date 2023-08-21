@@ -26,8 +26,8 @@ class Create extends React.Component<EmptyProps, CreateState> {
       <section className="create container" aria-label="Create product page">
         <CreateForm onCardCreate={this.handleCardCreate} />
         <div className="cards" role="list" aria-label="Card list">
-          {this.state.cards.map((card) => (
-            <Card card={card} key={card.name} />
+          {this.state.cards.map((card, index) => (
+            <Card card={card} key={index} />
           ))}
         </div>
       </section>
