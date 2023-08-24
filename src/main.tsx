@@ -7,7 +7,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
-import ROUTES from './types/routes.types';
+import ROUTES from './types/routes';
 import App from './components/App/App';
 import About from './pages/About/About';
 import Create from './pages/Create/Create';

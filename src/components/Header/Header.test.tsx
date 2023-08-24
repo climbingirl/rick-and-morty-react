@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { screen } from '@testing-library/react';
-import ROUTES from '../../types/routes.types';
+import ROUTES from '../../types/routes';
 import Header from './Header';
 import renderwithRouter, { host } from '../../test/renderWithRouter';
 

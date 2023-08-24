@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
 import renderwithRouter from '../../test/renderWithRouter';
-import ROUTES from '../../types/routes.types';
+import ROUTES from '../../types/routes';
 import Create from './Create';
 
 describe('Create', () => {

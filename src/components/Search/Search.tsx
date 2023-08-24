@@ -1,66 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Search.scss';
 
-interface SearchState {
-  searchValue: string;
-}
+function Search() {
+  const SEARCH_VALUE_KEY = 'rssReactIvanovaSearchValue';
+  const initialSearchValue = localStorage.getItem(SEARCH_VALUE_KEY) || '';
+  const [searchValue, setSearchValue] = useState(initialSearchValue);
 
-class Search extends React.Component<Record<string, never>, SearchState> {
-  SEARCH_VALUE_KEY = 'rssReactIvanovaSearchValue';
+  useEffect(() => {
+    localStorage.setItem(SEARCH_VALUE_KEY, searchValue);
+  }, [searchValue]);
 
-  constructor(props: Record<string, never>) {
-    super(props);
-    this.state = { searchValue: '' };
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setSearchValue(e.target.value);
   }
 
-  componentDidMount() {
-    const savedSearchValue = localStorage.getItem(this.SEARCH_VALUE_KEY);
-    if (savedSearchValue) this.setState({ searchValue: savedSearchValue });
-  }
-
-  componentDidUpdate() {
-    this.setSearchValue();
-  }
-
-  componentWillUnmount() {
-    this.setSearchValue();
-  }
-
-  handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({ searchValue: e.target.value });
-  }
-
-  handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
   }
 
-  setSearchValue() {
-    const value = this.state.searchValue;
-    localStorage.setItem(this.SEARCH_VALUE_KEY, value);
-  }
-
-  render() {
-    return (
-      <>
-        <form
-          className="search__form"
-          onSubmit={this.handleSubmit.bind(this)}
-          role="search"
-          aria-label="Product cards"
-        >
-          <div className="search__inner">
-            <input
-              className="search__input"
-              type="text"
-              value={this.state.searchValue}
-              placeholder="Enter search text"
-              onChange={this.handleChange.bind(this)}
-            />
-          </div>
-        </form>
-      </>
-    );
-  }
+  return (
+    <>
+      <form
+        className="search__form"
+        onSubmit={handleSubmit}
+        role="search"
+        aria-label="Product cards"
+      >
+        <div className="search__inner">
+          <input
+            className="search__input"
+            type="text"
+            value={searchValue}
+            placeholder="Enter search text"
+            onChange={handleChange}
+          />
+        </div>
+      </form>
+    </>
+  );
 }
 
 export default Search;
