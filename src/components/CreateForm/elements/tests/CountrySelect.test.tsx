@@ -22,6 +22,6 @@ describe('CountrySelect', () => {
 
   it('has "choose your country" option checked by default', () => {
     const option = screen.getByRole('option', { selected: true });
-    expect(option).toHaveTextContent(/choose your country/);
+    expect(option).toHaveTextContent(/choose your country/i);
   });
 });

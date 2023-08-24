@@ -57,6 +57,29 @@
     }
   }
 
+  &_file {
+    .create__box {
+      display: flex;
+      align-items: center;
+      column-gap: 5px;
+    }
+
+    .create__input_photo {
+      display: none;
+    }
+
+    .create__btn-photo {
+      flex-basis: 50%;
+    }
+
+    .create__file-name {
+      flex-basis: 50%;
+      height: 20px;
+      overflow: hidden;
+      word-wrap: break-word;
+    }
+  }
+
   &_consent {
     margin-top: 20px;
     justify-content: center;
@@ -81,14 +104,6 @@
 
   .create__select,
   .create__input {
-    width: 100%;
-
-    &_photo {
-      display: none;
-    }
-  }
-
-  .create__btn-photo {
     width: 100%;
   }
 }
