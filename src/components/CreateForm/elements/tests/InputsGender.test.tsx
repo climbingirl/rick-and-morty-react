@@ -6,7 +6,7 @@ import InputsGender from '../InputsGender';
 describe('InputsGender', () => {
   const refs = [React.createRef<HTMLInputElement>(), React.createRef<HTMLInputElement>()];
   beforeEach(() => {
-    render(<InputsGender forwRef={refs} />);
+    render(<InputsGender  />);
   });
 
   it('renders radiogroup with labels and radio inputs', () => {

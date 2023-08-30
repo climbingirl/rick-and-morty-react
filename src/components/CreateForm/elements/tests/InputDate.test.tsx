@@ -6,7 +6,7 @@ import InputDate from '../InputDate';
 describe('InputDate', () => {
   const ref = React.createRef<HTMLInputElement>();
   beforeEach(() => {
-    render(<InputDate forwRef={ref} error={null} />);
+    render(<InputDate error={undefined} />);
   });
 
   it('renders label, date input and error component', () => {

@@ -4,9 +4,8 @@ import React from 'react';
 import CountrySelect from '../CountrySelect';
 
 describe('CountrySelect', () => {
-  const ref = React.createRef<HTMLSelectElement>();
   beforeEach(() => {
-    render(<CountrySelect forwRef={ref} error={null} />);
+    render(<CountrySelect error={undefined} />);
   });
 
   it('renders label text, select input with options and error component', () => {

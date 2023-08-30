@@ -1,106 +1,72 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { FormValues } from '../../../types/form';
+import { CardElement } from '../../../types/models';
 import InputDate from '../elements/InputDate';
 import InputText from '../elements/InputText';
 import InputFile from '../elements/InputFile';
 import InputsGender from '../elements/InputsGender';
 import CountrySelect from '../elements/CountrySelect';
 import ConsentCheckbox from '../elements/ConsentCheckbox';
-import { CreateFormErrors } from '../../../types/models';
-import { CreateElement } from '../../../types/models';
-import { validateBirthDate, validateName } from '../../../utils/validation.helper';
 import './CreateForm.scss';
 
 interface CreateFormProps {
-  onCardCreate: (card: CreateElement) => void;
+  onCardCreate: (card: CardElement) => void;
 }
 
 function CreateForm(props: CreateFormProps) {
-  const [errors, setErrors] = useState<CreateFormErrors>({
-    name: null,
-    surname: null,
-    birthDate: null,
-    country: null,
-    photo: null,
-    consent: null,
-  });
-  const [showStatus, setShowStatus] = useState(false);
-  const elements = {
-    createForm: React.createRef<HTMLFormElement>(),
-    gendersRadio: [React.createRef<HTMLInputElement>(), React.createRef<HTMLInputElement>()],
-    nameInput: React.createRef<HTMLInputElement>(),
-    surnameInput: React.createRef<HTMLInputElement>(),
-    dateInput: React.createRef<HTMLInputElement>(),
-    countrySelect: React.createRef<HTMLSelectElement>(),
-    photoInput: React.createRef<HTMLInputElement>(),
-    consentCheckbox: React.createRef<HTMLInputElement>(),
-  };
+  const [isStatusShown, setIsStatusShown] = useState(false);
 
   useEffect(() => {
-    if (showStatus) {
+    if (isStatusShown) {
       setTimeout(() => {
-        setShowStatus(false);
+        setIsStatusShown(false);
       }, 3000);
     }
-  }, [showStatus]);
+  }, [isStatusShown]);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const fileList = elements.photoInput.current?.files;
-    const fileObj = fileList && fileList[0];
-    const formData: CreateElement = {
-      gender: elements.gendersRadio.find((g) => g.current?.checked === true)?.current?.value || '',
-      name: elements.nameInput.current?.value || '',
-      surname: elements.surnameInput.current?.value || '',
-      birthDate: elements.dateInput.current?.value || '',
-      country: elements.countrySelect.current?.value || '',
-      photo: fileObj ? URL.createObjectURL(fileObj) : '',
-      consent: elements.consentCheckbox.current?.checked || false,
-    };
-    const { isValid, errors } = validateFormData(formData);
-    if (!isValid) {
-      setErrors(errors);
-    } else {
-      setErrors(errors);
-      elements.createForm.current?.reset();
-      setShowStatus(true);
-      props.onCardCreate(formData);
-    }
-  }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    watch,
+  } = useForm<FormValues>({
+    mode: 'onSubmit',
+    reValidateMode: 'onSubmit',
+  });
 
-  function validateFormData(data: CreateElement): { isValid: boolean; errors: CreateFormErrors } {
-    const errors: CreateFormErrors = {
-      name: validateName(data.name, 'name'),
-      surname: validateName(data.surname, 'surname'),
-      birthDate: validateBirthDate(data.birthDate),
-      country: !data.country ? 'country is required' : null,
-      photo: !data.photo ? 'photo is required' : null,
-      consent: !data.consent ? 'consent must be confirmed' : null,
+  function onSubmit(data: FormValues) {
+    const cardData: CardElement = {
+      gender: data.gender,
+      name: data.name,
+      surname: data.surname,
+      birthDate: data.birthDate,
+      country: data.country,
+      photo: URL.createObjectURL(data.photo[0]),
+      consent: data.consent,
     };
-    const isValid = Object.values(errors).every((error) => error === null);
-    return { isValid, errors };
+    setIsStatusShown(true);
+    props.onCardCreate(cardData);
+    reset();
   }
 
   return (
     <div className="create__form-inner">
-      <form
-        className="create__form"
-        onSubmit={handleSubmit}
-        aria-label="Create product"
-        ref={elements.createForm}
-      >
-        <InputsGender forwRef={elements.gendersRadio} />
-        <InputText forwRef={elements.nameInput} name="name" error={errors.name} />
-        <InputText forwRef={elements.surnameInput} name="surname" error={errors.surname} />
-        <InputDate forwRef={elements.dateInput} error={errors.birthDate} />
-        <CountrySelect forwRef={elements.countrySelect} error={errors.country} />
-        <InputFile forwRef={elements.photoInput} error={errors.photo} />
-        <ConsentCheckbox forwRef={elements.consentCheckbox} error={errors.consent} />
+      <form className="create__form" onSubmit={handleSubmit(onSubmit)} aria-label="Create product">
+        <InputsGender register={register} />
+        <InputText name="name" register={register} error={errors.name?.message} />
+        <InputText name="surname" register={register} error={errors.surname?.message} />
+        <InputDate register={register} error={errors.birthDate?.message} />
+        <CountrySelect register={register} error={errors.country?.message} />
+        <InputFile register={register} error={errors.photo?.message} watch={watch} />
+        <ConsentCheckbox register={register} error={errors.consent?.message} />
         <button className="create__form-btn" type="submit">
           Submit
         </button>
       </form>
       <div className="create__data-status" role="status">
-        {showStatus && 'The data has been saved'}
+        {isStatusShown && 'The data has been saved'}
       </div>
     </div>
   );

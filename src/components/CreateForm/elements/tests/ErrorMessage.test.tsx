@@ -4,7 +4,7 @@ import ErrorMessage from '../ErrorMessage';
 
 describe('ErrorMessage', () => {
   it('renders empty alert when dosent get error', () => {
-    render(<ErrorMessage error={null} />);
+    render(<ErrorMessage error={undefined} />);
     const error = screen.getByRole('alert');
     expect(error).toBeInTheDocument();
     expect(error).toHaveTextContent('');

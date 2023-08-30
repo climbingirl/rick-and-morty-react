@@ -1,9 +1,11 @@
-import React from 'react';
+import { UseFormRegister } from 'react-hook-form';
+import { FormValues } from '../../../types/form';
 import ErrorMessage from './ErrorMessage';
+import { validateBirthDate } from '../../../utils/validation.helper';
 
 interface InputDateProps {
-  error: string | null;
-  forwRef: React.RefObject<HTMLInputElement>;
+  error: string | undefined;
+  register: UseFormRegister<FormValues>;
 }
 
 function InputDate(props: InputDateProps) {
@@ -16,8 +18,11 @@ function InputDate(props: InputDateProps) {
         <input
           className="create__input"
           id="input-date"
+          {...props.register('birthDate', {
+            required: 'date is required',
+            validate: validateBirthDate,
+          })}
           type="date"
-          ref={props.forwRef}
           role="textbox"
         />
         <ErrorMessage error={props.error} />

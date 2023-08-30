@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import CreateForm from '../../components/CreateForm/Form/CreateForm';
-import { CreateElement } from '../../types/models';
+import { CardElement } from '../../types/models';
 import Card from '../../components/CreateForm/Card/Card';
 import './Create.scss';
 
 function Create() {
-  const [cards, setCards] = useState<CreateElement[]>([]);
+  const [cards, setCards] = useState<CardElement[]>([]);
 
-  function handleCardCreate(card: CreateElement) {
+  function handleCardCreate(card: CardElement) {
     setCards([...cards, card]);
   }
 

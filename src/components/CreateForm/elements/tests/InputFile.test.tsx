@@ -6,7 +6,7 @@ import InputFile from '../InputFile';
 describe('InputFile', () => {
   const ref = React.createRef<HTMLInputElement>();
   beforeEach(() => {
-    render(<InputFile forwRef={ref} error={null} />);
+    render(<InputFile error={undefined} />);
   });
 
   it('renders label, file input, upload btn, file name and error component', () => {

@@ -1,9 +1,9 @@
 import React from 'react';
-import { CreateElement } from '../../../types/models';
+import { CardElement } from '../../../types/models';
 import './Card.scss';
 
 interface CardProps {
-  card: CreateElement;
+  card: CardElement;
 }
 
 function Card(props: CardProps) {

@@ -4,9 +4,8 @@ import React from 'react';
 import ConsentCheckbox from '../ConsentCheckbox';
 
 describe('ConsentCheckbox', () => {
-  const ref = React.createRef<HTMLInputElement>();
   beforeEach(() => {
-    render(<ConsentCheckbox forwRef={ref} error={null} />);
+    render(<ConsentCheckbox error={undefined} />);
   });
 
   it('renders label, checkbox" input and error component', () => {

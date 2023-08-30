@@ -1,9 +1,10 @@
-import React from 'react';
+import { UseFormRegister } from 'react-hook-form';
+import { FormValues } from '../../../types/form';
 import ErrorMessage from './ErrorMessage';
 
 interface CountrySelectProps {
-  error: string | null;
-  forwRef: React.RefObject<HTMLSelectElement>;
+  error: string | undefined;
+  register: UseFormRegister<FormValues>;
 }
 
 function CountrySelect(props: CountrySelectProps) {
@@ -13,14 +14,19 @@ function CountrySelect(props: CountrySelectProps) {
         Country
       </label>
       <div className="create__box">
-        <select className="create__select" id="input-country" defaultValue="" ref={props.forwRef}>
+        <select
+          className="create__select"
+          id="input-country"
+          {...props.register('country', { required: 'Country is required' })}
+          defaultValue=""
+        >
           <option value="" disabled>
             -- choose your country --
           </option>
-          <option>Thailand</option>
-          <option>USA</option>
-          <option>Russia</option>
-          <option>China</option>
+          <option value="Thailand">Thailand</option>
+          <option value="USA">USA</option>
+          <option value="Russia">Russia</option>
+          <option value="China">China</option>
         </select>
         <ErrorMessage error={props.error} />
       </div>

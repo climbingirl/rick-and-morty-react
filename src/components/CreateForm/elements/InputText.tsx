@@ -1,10 +1,11 @@
-import React from 'react';
+import { UseFormRegister } from 'react-hook-form';
+import { FormValues } from '../../../types/form';
 import ErrorMessage from './ErrorMessage';
 
 interface InputTextProps {
-  name: string;
-  error: string | null;
-  forwRef: React.RefObject<HTMLInputElement>;
+  name: keyof FormValues;
+  register: UseFormRegister<FormValues>;
+  error: string | undefined;
 }
 
 function InputText(props: InputTextProps) {
@@ -19,9 +20,14 @@ function InputText(props: InputTextProps) {
         <input
           className="create__input"
           id={`input-${name}`}
-          type="text"
+          {...props.register(name, {
+            required: `${name} is required`,
+            minLength: {
+              value: 2,
+              message: `${name} must contain more than 1 letter`
+            },
+          })}
           placeholder={'Enter your ' + name}
-          ref={props.forwRef}
         />
         <ErrorMessage error={props.error} />
       </div>

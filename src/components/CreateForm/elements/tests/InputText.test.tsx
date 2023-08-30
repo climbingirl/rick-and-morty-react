@@ -6,7 +6,7 @@ import InputText from '../InputText';
 describe('InputText', () => {
   const ref = React.createRef<HTMLInputElement>();
   beforeEach(() => {
-    render(<InputText forwRef={ref} name="name" error={null} />);
+    render(<InputText  name="name" error={undefined} />);
   });
 
   it('renders label, text input and error component', () => {

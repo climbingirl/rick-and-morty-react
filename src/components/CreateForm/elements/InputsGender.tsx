@@ -1,7 +1,8 @@
-import React from 'react';
+import { UseFormRegister } from 'react-hook-form';
+import { FormValues } from '../../../types/form';
 
 interface InputGenderProps {
-  forwRef: React.RefObject<HTMLInputElement>[];
+  register: UseFormRegister<FormValues>;
 }
 
 function InputsGender(props: InputGenderProps) {
@@ -11,20 +12,18 @@ function InputsGender(props: InputGenderProps) {
       <input
         className="create__input"
         id="input-male"
-        name="input-gender"
+        {...props.register('gender')}
         type="radio"
         value="male"
-        ref={props.forwRef[0]}
         defaultChecked
       />
       <label htmlFor="input-female">Female</label>
       <input
         className="create__input"
         id="input-female"
-        name="input-gender"
+        {...props.register('gender')}
         type="radio"
         value="female"
-        ref={props.forwRef[1]}
       />
     </div>
   );

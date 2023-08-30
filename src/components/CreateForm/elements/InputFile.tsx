@@ -1,32 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import { useRef } from 'react';
+import { UseFormRegister, UseFormWatch } from 'react-hook-form';
+import { FormValues } from '../../../types/form';
 import ErrorMessage from './ErrorMessage';
 
 interface InputFileProps {
-  error: string | null;
-  forwRef: React.RefObject<HTMLInputElement>;
+  error: string | undefined;
+  register: UseFormRegister<FormValues>;
+  watch: UseFormWatch<FormValues>;
 }
 
 function InputFile(props: InputFileProps) {
-  const photoInput = props.forwRef;
-  const [fileName, setFileName] = useState('');
-
-  useEffect(() => {
-    const fileName = getFileName();
-    if (!fileName) {
-      setFileName('');
-    }
+  const { ref, ...rest } = props.register('photo', {
+    required: 'Photo is required',
   });
+  const photoInput = useRef<HTMLInputElement | null>(null);
+  const fileName = getFileName();
+  props.watch('photo');
 
-  function handlePhotoUpload() {
+  function handleBtnClick() {
     if (photoInput) {
       photoInput.current?.click();
-    }
-  }
-
-  function handleInputChange() {
-    const fileName = getFileName();
-    if (fileName) {
-      setFileName(fileName);
     }
   }
 
@@ -44,14 +37,18 @@ function InputFile(props: InputFileProps) {
       <div className="create__box">
         <input
           className="create__input create__input_photo"
-          id="input-photo" /*  */
+          id="input-photo"
+          {...rest}
+          name="photo"
+          ref={(e) => {
+            ref(e);
+            photoInput.current = e;
+          }}
           type="file"
           accept="image/*"
-          ref={photoInput}
           data-testid="file"
-          onChange={handleInputChange}
         />
-        <button className="create__btn-photo" type="button" onClick={handlePhotoUpload}>
+        <button className="create__btn-photo" type="button" onClick={handleBtnClick}>
           Upload file
         </button>
         <span className="create__file-name" data-testid="file-name">
