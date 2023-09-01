@@ -1,11 +1,12 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import React from 'react';
 import ConsentCheckbox from '../ConsentCheckbox';
+import provideUseFormMethods from '../../../../test/provideUseFormMethods';
 
 describe('ConsentCheckbox', () => {
+  const { register } = provideUseFormMethods();
   beforeEach(() => {
-    render(<ConsentCheckbox error={undefined} />);
+    render(<ConsentCheckbox register={register} error={undefined} />);
   });
 
   it('renders label, checkbox" input and error component', () => {

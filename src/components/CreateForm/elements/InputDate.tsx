@@ -21,6 +21,7 @@ function InputDate(props: InputDateProps) {
           {...props.register('birthDate', {
             required: 'date is required',
             validate: validateBirthDate,
+            valueAsDate: true,
           })}
           type="date"
           role="textbox"

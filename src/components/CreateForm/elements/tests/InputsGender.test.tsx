@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import React from 'react';
 import InputsGender from '../InputsGender';
+import provideUseFormMethods from '../../../../test/provideUseFormMethods';
 
 describe('InputsGender', () => {
-  const refs = [React.createRef<HTMLInputElement>(), React.createRef<HTMLInputElement>()];
+  const { register } = provideUseFormMethods();
   beforeEach(() => {
-    render(<InputsGender  />);
+    render(<InputsGender register={register} />);
   });
 
   it('renders radiogroup with labels and radio inputs', () => {

@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import React from 'react';
 import InputDate from '../InputDate';
+import provideUseFormMethods from '../../../../test/provideUseFormMethods';
 
 describe('InputDate', () => {
-  const ref = React.createRef<HTMLInputElement>();
+  const { register } = provideUseFormMethods();
   beforeEach(() => {
-    render(<InputDate error={undefined} />);
+    render(<InputDate register={register} error={undefined} />);
   });
 
   it('renders label, date input and error component', () => {

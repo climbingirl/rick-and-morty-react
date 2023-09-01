@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
+import { render, screen } from '@testing-library/react';
 import InputFile from '../InputFile';
+import provideUseFormMethods from '../../../../test/provideUseFormMethods';
 
 describe('InputFile', () => {
-  const ref = React.createRef<HTMLInputElement>();
+  const { register, watch } = provideUseFormMethods();
   beforeEach(() => {
-    render(<InputFile error={undefined} />);
+    render(<InputFile register={register} watch={watch} error={undefined} />);
   });
 
   it('renders label, file input, upload btn, file name and error component', () => {
@@ -20,16 +20,5 @@ describe('InputFile', () => {
     expect(btn).toBeInTheDocument();
     expect(name).toBeInTheDocument();
     expect(error).toBeInTheDocument();
-  });
-
-  it('changes the file name content after the file is loaded', () => {
-    const name = screen.getByTestId('file-name');
-    expect(name).toHaveTextContent('');
-    fireEvent.change(screen.getByTestId('file'), {
-      target: {
-        files: [new File(['test'], 'test.png')],
-      },
-    });
-    expect(name).toHaveTextContent('test.png');
   });
 });

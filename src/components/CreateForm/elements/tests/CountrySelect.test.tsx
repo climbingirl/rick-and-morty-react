@@ -1,11 +1,12 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import React from 'react';
 import CountrySelect from '../CountrySelect';
+import provideUseFormMethods from '../../../../test/provideUseFormMethods';
 
 describe('CountrySelect', () => {
+  const { register } = provideUseFormMethods();
   beforeEach(() => {
-    render(<CountrySelect error={undefined} />);
+    render(<CountrySelect register={register} error={undefined} />);
   });
 
   it('renders label text, select input with options and error component', () => {

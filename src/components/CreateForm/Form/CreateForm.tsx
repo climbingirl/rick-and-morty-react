@@ -41,7 +41,7 @@ function CreateForm(props: CreateFormProps) {
       gender: data.gender,
       name: data.name,
       surname: data.surname,
-      birthDate: data.birthDate,
+      birthDate: formatDate(data.birthDate),
       country: data.country,
       photo: URL.createObjectURL(data.photo[0]),
       consent: data.consent,
@@ -49,6 +49,13 @@ function CreateForm(props: CreateFormProps) {
     setIsStatusShown(true);
     props.onCardCreate(cardData);
     reset();
+  }
+
+  function formatDate(date: Date): string {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
   }
 
   return (

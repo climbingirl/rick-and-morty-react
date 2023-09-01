@@ -24,7 +24,7 @@ function InputText(props: InputTextProps) {
             required: `${name} is required`,
             minLength: {
               value: 2,
-              message: `${name} must contain more than 1 letter`
+              message: `${name} must contain more than 1 letter`,
             },
           })}
           placeholder={'Enter your ' + name}

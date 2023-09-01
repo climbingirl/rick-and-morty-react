@@ -3,6 +3,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import renderwithRouter from '../../test/renderWithRouter';
 import ROUTES from '../../types/routes';
 import Create from './Create';
+import userEvent from '@testing-library/user-event';
 
 describe('Create', () => {
   beforeEach(() => {
@@ -27,7 +28,11 @@ describe('Create', () => {
     const cards = screen.queryAllByRole('listitem', { name: 'Card' });
     expect(cards.length).toBe(0);
 
-    fireEvent.change(screen.getByLabelText('Your name'), { target: { value: 'Name' } });
+    const user = userEvent.setup();
+
+    fireEvent.change(screen.getByLabelText('Your name'), {
+      target: { value: 'Name' },
+    });
     fireEvent.change(screen.getByLabelText('Your surname'), {
       target: { value: 'Surame' },
     });
@@ -37,14 +42,12 @@ describe('Create', () => {
     fireEvent.change(screen.getByLabelText('Country'), {
       target: { value: 'Thailand' },
     });
-    fireEvent.change(screen.getByLabelText('Your photo'), {
-      target: { files: [new File(['photo'], 'photo.png', { type: 'image/png' })] },
-    });
-    fireEvent.change(screen.getByLabelText(/i agree/i), {
-      target: { checked: true },
-    });
+    await user.upload(
+      screen.getByLabelText('Your photo'),
+      new File(['photo'], 'photo.png', { type: 'image/png' })
+    );
+    fireEvent.click(screen.getByLabelText(/i agree/i));
     fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
-
     const updatedCards = await screen.findAllByRole('listitem');
     expect(updatedCards.length).toBe(1);
   });

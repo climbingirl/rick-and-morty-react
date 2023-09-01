@@ -1,6 +1,6 @@
-export function validateBirthDate(value: string) {
+export function validateBirthDate(value: Date) {
   let error = undefined;
-  const date = new Date(value).getTime();
+  const date = value.getTime();
   const currentDate = Date.now();
 
   if (date > currentDate) {
