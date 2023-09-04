@@ -1,4 +1,3 @@
-import React from 'react';
 import { CardElement } from '../../../types/models';
 import './Card.scss';
 

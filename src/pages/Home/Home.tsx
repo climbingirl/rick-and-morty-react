@@ -1,4 +1,3 @@
-import React from 'react';
 import ProductList from '../../components/ProductLiast/ProductList';
 import Search from '../../components/Search/Search';
 import { products } from '../../data';

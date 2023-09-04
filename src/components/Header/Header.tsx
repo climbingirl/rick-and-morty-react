@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink, Location } from 'react-router-dom';
 import ROUTES from '../../types/routes';
 import './Header.scss';
