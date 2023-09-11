@@ -18,6 +18,7 @@ function Header(props: HeaderProps) {
     { name: 'home', title: 'home page', route: ROUTES.ROOT },
     { name: 'about', title: 'about page', route: ROUTES.ABOUT },
     { name: 'create', title: 'create page', route: ROUTES.CREATE },
+    { name: 'characters', title: 'characters page', route: ROUTES.API },
   ];
 
   function getCurrentPageTitle() {

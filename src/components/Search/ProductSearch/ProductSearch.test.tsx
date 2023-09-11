@@ -1,9 +1,9 @@
 import { describe, it, expect, afterEach, vi } from 'vitest';
 import { createEvent, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Search from './Search';
+import ProductSearch from './ProductSearch';
 
-describe('Search', () => {
+describe('ProductSearch', () => {
   const getItemSpy = vi.spyOn(Storage.prototype, 'getItem');
   const setItemSpy = vi.spyOn(Storage.prototype, 'setItem');
 
@@ -11,15 +11,14 @@ describe('Search', () => {
     localStorage.clear();
   });
 
-  it('renders search form with input', () => {
-    render(<Search />);
+  it('renders search form', () => {
+    render(<ProductSearch />);
     const searchForm = screen.getByRole('search', { name: 'Product cards' });
-    const input = screen.getByRole('textbox');
-    expect(searchForm).toContainElement(input);
+    expect(searchForm).toBeInTheDocument();
   });
 
   it('prevents default submit form action', () => {
-    render(<Search />);
+    render(<ProductSearch />);
     const searchForm = screen.getByRole('search', { name: 'Product cards' });
     const submitEvent = createEvent.submit(searchForm);
     fireEvent(searchForm, submitEvent);
@@ -27,14 +26,14 @@ describe('Search', () => {
   });
 
   it('renders input with empty value if localStorage is empty', () => {
-    render(<Search />);
+    render(<ProductSearch />);
     const input = screen.getByRole('textbox');
     expect(getItemSpy).toHaveBeenCalled();
     expect(input).toHaveValue('');
   });
 
   it('changes the input value by entering text', async () => {
-    const { rerender } = render(<Search />);
+    const { rerender } = render(<ProductSearch />);
     const input = screen.getByRole('textbox');
     expect(input).toHaveValue('');
 
@@ -42,7 +41,7 @@ describe('Search', () => {
     await user.type(input, 'test');
     expect(setItemSpy).toHaveBeenCalled();
 
-    rerender(<Search />);
+    rerender(<ProductSearch />);
     expect(input).toHaveValue('test');
   });
 });

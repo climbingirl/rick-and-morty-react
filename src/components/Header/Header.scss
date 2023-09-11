@@ -21,6 +21,9 @@
 
     &.active {
       color: #fff;
+      cursor: default;
+      pointer-events: none;
+      
       &:hover {
         color: #fff;
       }

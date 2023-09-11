@@ -12,6 +12,7 @@ import App from './components/App/App';
 import About from './pages/About/About';
 import Create from './pages/Create/Create';
 import Home from './pages/Home/Home';
+import Characters from './pages/Characters/Characters';
 import NotFound from './pages/NotFound/NotFound';
 import './index.css';
 
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path={ROUTES.ABOUT} element={<About />} />
       <Route path={ROUTES.CREATE} element={<Create />} />
+      <Route path={ROUTES.API} element={<Characters />} />
       <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
       <Route path="/*" element={<Navigate to={ROUTES.NOT_FOUND} />} />
     </Route>

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import './Search.scss';
+import { useEffect, useState } from 'react';
+import '../SearchForm.scss';
 
 function Search() {
-  const SEARCH_VALUE_KEY = 'rssReactIvanovaSearchValue';
+  const SEARCH_VALUE_KEY = 'rssReactIvanovaProductSearchValue';
   const initialSearchValue = localStorage.getItem(SEARCH_VALUE_KEY) || '';
   const [searchValue, setSearchValue] = useState(initialSearchValue);
 

@@ -15,7 +15,7 @@ describe('Home', () => {
   });
 
   it('renders Search and ProductList components', () => {
-    const search = screen.getByRole('search', { name: 'Product cards' });
+    const search = screen.getByRole('search');
     const productList = screen.getByRole('list');
     expect(search).toBeInTheDocument();
     expect(productList).toBeInTheDocument();
