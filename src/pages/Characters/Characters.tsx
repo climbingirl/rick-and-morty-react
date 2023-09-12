@@ -4,6 +4,7 @@ import CharacterSearch from '../../components/Search/CharacterSearch/CharacterSe
 import { Character } from '../../types/models';
 import { getCharacters } from './service';
 import { useSearchParams } from 'react-router-dom';
+import CharacterPopup from '../../components/CharacterPopup/CharacterPopup';
 
 export const SEARCH_VALUE_KEY = 'rssReactIvanovaSearchNameValue';
 
@@ -33,6 +34,7 @@ function Characters() {
     <section className="home container" aria-label="Api page">
       <CharacterSearch />
       <CharacterList characters={characters} />
+      <CharacterPopup />
     </section>
   );
 }

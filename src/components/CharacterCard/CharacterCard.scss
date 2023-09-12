@@ -44,12 +44,12 @@
     &-title {
       color: #9d5d33;
     }
-  }
 
-  &__location {
+    &-location {
     flex-basis: 100%;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    }
   }
 }
