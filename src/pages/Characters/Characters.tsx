@@ -5,6 +5,8 @@ import { Character } from '../../types/models';
 import { getCharacters } from './service';
 import { useSearchParams } from 'react-router-dom';
 import CharacterPopup from '../../components/CharacterPopup/CharacterPopup';
+import Loader from '../../components/Loader/Loader';
+import './Characters.scss';
 
 export const SEARCH_VALUE_KEY = 'rssReactIvanovaSearchNameValue';
 
@@ -12,11 +14,14 @@ function Characters() {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [searcParams, setSearchParams] = useSearchParams();
   const name = searcParams.get('name') || '';
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const storedName = localStorage.getItem(SEARCH_VALUE_KEY) || '';
     const loadCharacters = async (name: string) => {
+      setIsLoading(true);
       const data = await getCharacters(name);
+      setIsLoading(false);
       setCharacters(data);
     };
 
@@ -31,9 +36,15 @@ function Characters() {
   }, [name, setSearchParams]);
 
   return (
-    <section className="home container" aria-label="Api page">
+    <section className="characters container" aria-label="Api page">
       <CharacterSearch />
-      <CharacterList characters={characters} />
+      {isLoading ? (
+        <div className="characters__loader">
+          <Loader />
+        </div>
+      ) : (
+        <CharacterList characters={characters} />
+      )}
       <CharacterPopup />
     </section>
   );

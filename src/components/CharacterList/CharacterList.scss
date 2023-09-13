@@ -1,15 +1,15 @@
-.characters {
-  &__list {
+.characters__list {
+  &_result {
     display: flex;
     flex-wrap: wrap;
     column-gap: 40px;
     row-gap: 25px;
   }
 
-  &__list-empty {
+  &_empty {
     margin-top: 100px;
-    font-size: 20px;
-    line-height: 25px;
+    font-size: 30px;
+    line-height: 40px;
     color: #33899d;
     text-align: center;
   }
