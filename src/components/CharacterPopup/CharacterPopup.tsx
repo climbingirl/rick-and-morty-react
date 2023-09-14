@@ -1,9 +1,9 @@
 import { useSearchParams } from 'react-router-dom';
-import './CharacterPopup.scss';
 import { useEffect, useState } from 'react';
 import { getCharacter } from '../../pages/Characters/service';
 import { Character } from '../../types/models';
 import Loader from '../Loader/Loader';
+import './CharacterPopup.scss';
 
 function CharacterPopup() {
   const [character, setCharacter] = useState<Character | null>(null);

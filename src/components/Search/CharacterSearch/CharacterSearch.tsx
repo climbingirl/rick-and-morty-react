@@ -1,9 +1,13 @@
 import { useSearchParams } from 'react-router-dom';
 import { SEARCH_VALUE_KEY } from '../../../pages/Characters/Characters';
-import { createRef, useEffect } from 'react';
+import { createRef } from 'react';
 import '../SearchForm.scss';
 
-function CharacterSearch() {
+interface CharacterSearchProps {
+  isLoading: boolean;
+}
+
+function CharacterSearch(props: CharacterSearchProps) {
   const [searcParams, setSearchParams] = useSearchParams();
   const name = searcParams.get('name') || '';
   const inputRef = createRef<HTMLInputElement>();
@@ -30,6 +34,9 @@ function CharacterSearch() {
           type="text"
           placeholder="Enter character name"
         />
+        <button className="search__btn" type="submit" disabled={props.isLoading}>
+          Search
+        </button>
       </div>
     </form>
   );

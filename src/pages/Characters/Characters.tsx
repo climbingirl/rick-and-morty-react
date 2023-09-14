@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import CharacterList from '../../components/CharacterList/CharacterList';
 import CharacterSearch from '../../components/Search/CharacterSearch/CharacterSearch';
 import { Character } from '../../types/models';
-import { getCharacters } from './service';
+import { getCharactersData } from './service';
 import { useSearchParams } from 'react-router-dom';
 import CharacterPopup from '../../components/CharacterPopup/CharacterPopup';
 import Loader from '../../components/Loader/Loader';
+import Pagination from '../../components/Pagination/Pagination';
 import './Characters.scss';
 
 export const SEARCH_VALUE_KEY = 'rssReactIvanovaSearchNameValue';
@@ -14,30 +15,33 @@ function Characters() {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [searcParams, setSearchParams] = useSearchParams();
   const name = searcParams.get('name') || '';
+  const page = searcParams.get('page') || '';
   const [isLoading, setIsLoading] = useState(false);
+  const [totalPage, setTotalPage] = useState(0);
 
   useEffect(() => {
     const storedName = localStorage.getItem(SEARCH_VALUE_KEY) || '';
-    const loadCharacters = async (name: string) => {
+    const loadCharacters = async (name: string, page: string) => {
       setIsLoading(true);
-      const data = await getCharacters(name);
+      const [charactersArr, pages] = await getCharactersData(name, page);
       setIsLoading(false);
-      setCharacters(data);
+      setCharacters(charactersArr);
+      setTotalPage(pages);
     };
 
-    if (!name && storedName) {
-      setSearchParams({ name: storedName });
-    } else if (name) {
+    if (name || page) {
       localStorage.setItem(SEARCH_VALUE_KEY, name);
-      loadCharacters(name);
+      loadCharacters(name, page);
+    } else if (!name && storedName) {
+      setSearchParams({ name: storedName });
     } else {
-      loadCharacters('');
+      loadCharacters('', '');
     }
-  }, [name, setSearchParams]);
+  }, [name, page, setSearchParams]);
 
   return (
     <section className="characters container" aria-label="Api page">
-      <CharacterSearch />
+      <CharacterSearch isLoading={isLoading} />
       {isLoading ? (
         <div className="characters__loader">
           <Loader />
@@ -45,6 +49,7 @@ function Characters() {
       ) : (
         <CharacterList characters={characters} />
       )}
+      <Pagination totalPage={totalPage} />
       <CharacterPopup />
     </section>
   );

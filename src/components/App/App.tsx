@@ -9,6 +9,7 @@ function App() {
       <main className="main">
         <Outlet />
       </main>
+      <div className="footer"></div>
     </div>
   );
 }

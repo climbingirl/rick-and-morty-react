@@ -34,6 +34,9 @@ function Search() {
             placeholder="Enter search text"
             onChange={handleChange}
           />
+          <button className="search__btn" type="submit">
+            Search
+          </button>
         </div>
       </form>
     </>
