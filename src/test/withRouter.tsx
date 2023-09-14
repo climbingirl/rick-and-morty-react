@@ -1,5 +1,4 @@
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
 
 export const host = 'http://localhost:3000';
 
@@ -18,5 +17,5 @@ export default (component: React.ReactNode, route = '/') => {
     }
   );
 
-  return render(<RouterProvider router={router} />);
+  return <RouterProvider router={router} />;
 };

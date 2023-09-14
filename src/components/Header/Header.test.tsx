@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import ROUTES from '../../types/routes';
 import Header from './Header';
-import renderwithRouter, { host } from '../../test/renderWithRouter';
+import withRouter, { host } from '../../test/withRouter';
 
 describe('Header', () => {
   beforeEach(() => {
-    renderwithRouter(<Header />, ROUTES.ROOT);
+    render(withRouter(<Header />, ROUTES.ROOT));
   });
 
   it('has navigation menu', () => {

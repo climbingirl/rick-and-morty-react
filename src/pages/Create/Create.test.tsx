@@ -1,13 +1,13 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { fireEvent, screen } from '@testing-library/react';
-import renderwithRouter from '../../test/renderWithRouter';
+import { fireEvent, render, screen } from '@testing-library/react';
+import withRouter from '../../test/withRouter';
 import ROUTES from '../../types/routes';
 import Create from './Create';
 import userEvent from '@testing-library/user-event';
 
 describe('Create', () => {
   beforeEach(() => {
-    renderwithRouter(<Create />, ROUTES.CREATE);
+    render(withRouter(<Create />, ROUTES.CREATE));
   });
 
   it('renders by "create" route', () => {

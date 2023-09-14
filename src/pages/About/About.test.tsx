@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { screen } from '@testing-library/react';
-import renderwithRouter from '../../test/renderWithRouter';
+import { render, screen } from '@testing-library/react';
+import withRouter from '../../test/withRouter';
 import ROUTES from '../../types/routes';
 import About from './About';
 
 describe('About', () => {
   beforeEach(() => {
-    renderwithRouter(<About />, ROUTES.ABOUT);
+    render(withRouter(<About />, ROUTES.ABOUT));
   });
 
   it('renders by "about" route', () => {

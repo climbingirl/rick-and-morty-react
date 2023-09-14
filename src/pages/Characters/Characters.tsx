@@ -16,6 +16,7 @@ function Characters() {
   const [searcParams, setSearchParams] = useSearchParams();
   const name = searcParams.get('name') || '';
   const page = searcParams.get('page') || '';
+  const popup = searcParams.get('popup') || '';
   const [isLoading, setIsLoading] = useState(false);
   const [totalPage, setTotalPage] = useState(0);
 
@@ -29,7 +30,7 @@ function Characters() {
       setTotalPage(pages);
     };
 
-    if (name || page) {
+    if (name || page || popup) {
       localStorage.setItem(SEARCH_VALUE_KEY, name);
       loadCharacters(name, page);
     } else if (!name && storedName) {
@@ -37,7 +38,8 @@ function Characters() {
     } else {
       loadCharacters('', '');
     }
-  }, [name, page, setSearchParams]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name, page]);
 
   return (
     <section className="characters container" aria-label="Api page">
