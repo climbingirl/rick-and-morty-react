@@ -14,7 +14,7 @@ import Create from './pages/Create/Create';
 import Home from './pages/Home/Home';
 import Characters from './pages/Characters/Characters';
 import NotFound from './pages/NotFound/NotFound';
-import './index.css';
+import './index.scss';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
