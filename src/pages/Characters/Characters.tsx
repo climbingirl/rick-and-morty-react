@@ -1,58 +1,85 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useAppSelector } from '../../components/redux/hooks/useAppSelector';
+import { useAppDispatch } from '../../components/redux/hooks/useAppDispatch';
+import { useSearchParams } from 'react-router-dom';
 import CharacterList from '../../components/CharacterList/CharacterList';
 import CharacterSearch from '../../components/Search/CharacterSearch/CharacterSearch';
-import { Character } from '../../types/models';
-import { getCharactersData } from './service';
-import { useSearchParams } from 'react-router-dom';
 import CharacterPopup from '../../components/CharacterPopup/CharacterPopup';
 import Loader from '../../components/Loader/Loader';
 import Pagination from '../../components/Pagination/Pagination';
+import {
+  fetchUsers,
+  aplyCharactersSearchParamsAction,
+} from '../../components/redux/characters/actions';
 import './Characters.scss';
 
-export const SEARCH_VALUE_KEY = 'rssReactIvanovaSearchNameValue';
-
 function Characters() {
-  const [characters, setCharacters] = useState<Character[]>([]);
-  const [searcParams, setSearchParams] = useSearchParams();
-  const name = searcParams.get('name') || '';
-  const page = searcParams.get('page') || '';
-  const popup = searcParams.get('popup') || '';
-  const [isLoading, setIsLoading] = useState(false);
-  const [totalPage, setTotalPage] = useState(0);
+  const {
+    isLoading,
+    characters,
+    totalPage,
+    error,
+    searchText,
+    currentPage,
+    isSearchParamsApplied,
+  } = useAppSelector((state) => state.characters);
+  const dispatch = useAppDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const nameParam = searchParams.get('name') || '';
+  const pageParam = searchParams.get('page') || '';
 
   useEffect(() => {
-    const storedName = localStorage.getItem(SEARCH_VALUE_KEY) || '';
-    const loadCharacters = async (name: string, page: string) => {
-      setIsLoading(true);
-      const [charactersArr, pages] = await getCharactersData(name, page);
-      setIsLoading(false);
-      setCharacters(charactersArr);
-      setTotalPage(pages);
-    };
-
-    if (name || page || popup) {
-      localStorage.setItem(SEARCH_VALUE_KEY, name);
-      loadCharacters(name, page);
-    } else if (!name && storedName) {
-      setSearchParams({ name: storedName });
-    } else {
-      loadCharacters('', '');
+    if (!isSearchParamsApplied) {
+      const pageNumber = Number(pageParam) || 1;
+      dispatch(aplyCharactersSearchParamsAction(nameParam, pageNumber));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name, page]);
+  }, []);
+
+  useEffect(() => {
+    if (isSearchParamsApplied) {
+      dispatch(fetchUsers(searchText, currentPage));
+      setCurrentSearchParams();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchText, currentPage, isSearchParamsApplied]);
+
+  function setCurrentSearchParams() {
+    if (searchText) {
+      searchParams.set('name', searchText);
+    } else {
+      searchParams.delete('name');
+    }
+    if (currentPage > 1) {
+      searchParams.set('page', String(currentPage));
+    } else {
+      searchParams.delete('page');
+    }
+    setSearchParams(searchParams);
+  }
+
+  if (isLoading) {
+    return (
+      <div className="characters__loader">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <section className="characters container" aria-label="Api page">
-      <CharacterSearch isLoading={isLoading} />
-      {isLoading ? (
-        <div className="characters__loader">
-          <Loader />
+      <CharacterSearch />
+      {error ? (
+        <div className="characters__empty" aria-label="Characters not found">
+          {error}
         </div>
       ) : (
-        <CharacterList characters={characters} />
+        <>
+          <CharacterList characters={characters} />
+          <Pagination totalPage={totalPage} />
+          <CharacterPopup />
+        </>
       )}
-      <Pagination totalPage={totalPage} />
-      <CharacterPopup />
     </section>
   );
 }

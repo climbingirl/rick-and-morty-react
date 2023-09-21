@@ -1,9 +1,11 @@
-import { useSearchParams } from 'react-router-dom';
+import { useAppSelector } from '../redux/hooks/useAppSelector';
+import { useAppDispatch } from '../redux/hooks/useAppDispatch';
 import './Pagination.scss';
+import { setCharactersCurrentPageAction } from '../redux/characters/actions';
 
 function Pagination(props: { totalPage: number }) {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = Number(searchParams.get('page')) || 1;
+  const { currentPage } = useAppSelector((state) => state.characters);
+  const dispatch = useAppDispatch();
 
   const paginationItems: JSX.Element[] = [];
   for (let i = 1; i <= props.totalPage; i++) {
@@ -20,14 +22,8 @@ function Pagination(props: { totalPage: number }) {
 
   function handleClick(e: React.MouseEvent<HTMLElement>) {
     const target = e.target as HTMLElement;
-    const id = target.dataset.id;
-    if (id && id !== '1') {
-      searchParams.set('page', id);
-      setSearchParams(searchParams);
-    } else if (id && id === '1') {
-      searchParams.delete('page');
-      setSearchParams(searchParams);
-    }
+    const page = Number(target.dataset.id);
+    dispatch(setCharactersCurrentPageAction(page));
   }
 
   return (

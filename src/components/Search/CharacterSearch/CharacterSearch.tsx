@@ -1,27 +1,18 @@
-import { useSearchParams } from 'react-router-dom';
-import { SEARCH_VALUE_KEY } from '../../../pages/Characters/Characters';
+import { useAppSelector } from '../../redux/hooks/useAppSelector';
+import { useAppDispatch } from '../../redux/hooks/useAppDispatch';
 import { createRef } from 'react';
+import { setCharactersSearchTextAction } from '../../redux/characters/actions';
 import '../SearchForm.scss';
 
-interface CharacterSearchProps {
-  isLoading: boolean;
-}
-
-function CharacterSearch(props: CharacterSearchProps) {
-  const [searcParams, setSearchParams] = useSearchParams();
-  const name = searcParams.get('name') || '';
+function CharacterSearch() {
+  const { searchText } = useAppSelector((state) => state.characters);
+  const dispatch = useAppDispatch();
   const inputRef = createRef<HTMLInputElement>();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const value = inputRef.current?.value || '';
-
-    if (!value) {
-      setSearchParams({});
-    } else {
-      setSearchParams({ name: value });
-    }
-    localStorage.setItem(SEARCH_VALUE_KEY, value);
+    const text = inputRef.current?.value || '';
+    dispatch(setCharactersSearchTextAction(text));
   }
 
   return (
@@ -29,12 +20,12 @@ function CharacterSearch(props: CharacterSearchProps) {
       <div className="search__inner">
         <input
           className="search__input"
-          defaultValue={name}
+          defaultValue={searchText}
           ref={inputRef}
           type="text"
           placeholder="Enter character name"
         />
-        <button className="search__btn" type="submit" disabled={props.isLoading}>
+        <button className="search__btn" type="submit">
           Search
         </button>
       </div>

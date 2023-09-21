@@ -1,10 +1,20 @@
-.characters__loader {
-  display: flex;
-  justify-content: center;
-  margin-top: 100px;
+.characters {
+  &__loader {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
 
-  .loader {
-    width: 75px;
-    height: 75px;
+    .loader {
+      width: 90px;
+      height: 90px;
+    }
+  }
+
+  &__empty {
+    margin-top: 100px;
+    font-size: 30px;
+    line-height: 40px;
+    color: #33899d;
+    text-align: center;
   }
 }
