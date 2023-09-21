@@ -4,11 +4,11 @@ import CharacterSearch from './CharacterSearch';
 import ROUTES from '../../../types/routes';
 import withRouter from '../../../test/withRouter';
 import * as appDispatchHook from '../../redux/hooks/useAppDispatch';
-import * as appSelectorhHook from '../../redux/hooks/useAppSelector';
+import * as useAppSelector from '../../redux/hooks/useAppSelector';
 
 describe('CharacterSearch', () => {
   const mockedDispatch = vi.spyOn(appDispatchHook, 'useAppDispatch');
-  const mockedSelector = vi.spyOn(appSelectorhHook, 'useAppSelector');
+  const mockedSelector = vi.spyOn(useAppSelector, 'useAppSelector');
   const dispatch = vi.fn;
 
   it('renders search form', () => {

@@ -1,16 +1,12 @@
 import { useEffect } from 'react';
 import { useAppSelector } from '../../components/redux/hooks/useAppSelector';
-import { useAppDispatch } from '../../components/redux/hooks/useAppDispatch';
 import { useSearchParams } from 'react-router-dom';
+import { useActions } from '../../components/redux/hooks/useActions';
 import CharacterList from '../../components/CharacterList/CharacterList';
 import CharacterSearch from '../../components/Search/CharacterSearch/CharacterSearch';
 import CharacterPopup from '../../components/CharacterPopup/CharacterPopup';
 import Loader from '../../components/Loader/Loader';
 import Pagination from '../../components/Pagination/Pagination';
-import {
-  fetchUsers,
-  aplyCharactersSearchParamsAction,
-} from '../../components/redux/characters/actions';
 import './Characters.scss';
 
 function Characters() {
@@ -23,28 +19,28 @@ function Characters() {
     currentPage,
     isSearchParamsApplied,
   } = useAppSelector((state) => state.characters);
-  const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const nameParam = searchParams.get('name') || '';
   const pageParam = searchParams.get('page') || '';
+  const { fetchCharacters, setCharactersSearchParams } = useActions();
 
   useEffect(() => {
     if (!isSearchParamsApplied) {
       const pageNumber = Number(pageParam) || 1;
-      dispatch(aplyCharactersSearchParamsAction(nameParam, pageNumber));
+      setCharactersSearchParams(nameParam, pageNumber);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (isSearchParamsApplied) {
-      dispatch(fetchUsers(searchText, currentPage));
-      setCurrentSearchParams();
+      fetchCharacters(searchText, currentPage);
+      applyCurrentSearchParams();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchText, currentPage, isSearchParamsApplied]);
 
-  function setCurrentSearchParams() {
+  function applyCurrentSearchParams() {
     if (searchText) {
       searchParams.set('name', searchText);
     } else {

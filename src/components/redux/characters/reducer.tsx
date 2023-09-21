@@ -31,7 +31,7 @@ export const charactersReducer = (
       return { ...state, currentPage: 1, searchText: action.payload };
     case CharactersActionTypes.SET_CHARACTERS_CURRENT_PAGE:
       return { ...state, currentPage: action.payload };
-    case CharactersActionTypes.APLY_CHARACTERS_SEARCH_PARAMS:
+    case CharactersActionTypes.SET_CHARACTERS_SEARCH_PARAMS:
       return {
         ...state,
         isSearchParamsApplied: true,

@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getCharacter } from '../../pages/Characters/service';
+import { charactersAPI } from '../../api/api';
 import { Character } from '../../types/models';
 import Loader from '../Loader/Loader';
 import './CharacterPopup.scss';
@@ -23,7 +23,7 @@ function CharacterPopup() {
   useEffect(() => {
     const loadCharacter = async (id: string) => {
       setIsLoading(true);
-      const data = await getCharacter(id);
+      const data = await charactersAPI.getCharacter(id);
       setIsLoading(false);
       setCharacter(data);
     };

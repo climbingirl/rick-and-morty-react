@@ -16,24 +16,24 @@ export enum CharactersActionTypes {
   FETCH_CHARACTERS_ERROR = 'FETCH_CHARACTERS_ERROR',
   SET_CHARACTERS_SEARCH_TEXT = 'SET_CHARACTERS_SEARCH_TEXT',
   SET_CHARACTERS_CURRENT_PAGE = 'SET_CHARACTERS_CURRENT_PAGE',
-  APLY_CHARACTERS_SEARCH_PARAMS = 'APLY_CHARACTERS_SEARCH_PARAMS',
+  SET_CHARACTERS_SEARCH_PARAMS = 'SET_CHARACTERS_SEARCH_PARAMS',
 }
 
-interface FetchCharactersAction {
+interface FetchCharacters {
   type: CharactersActionTypes.FETCH_CHARACTERS;
 }
 
-interface FetchCharactersSuccessAction {
+interface FetchCharactersSuccess {
   type: CharactersActionTypes.FETCH_CHARACTERS_SUCCESS;
   payload: { characters: Character[]; totalPage: number };
 }
 
-interface FetchCharactersErrorAction {
+interface FetchCharactersError {
   type: CharactersActionTypes.FETCH_CHARACTERS_ERROR;
   payload: string;
 }
 
-interface SetCharactersSearchTextAction {
+interface SetCharactersSearchText {
   type: CharactersActionTypes.SET_CHARACTERS_SEARCH_TEXT;
   payload: string;
 }
@@ -43,8 +43,8 @@ interface SetCharactersCurrentPage {
   payload: number;
 }
 
-interface AplyCharactersSearchParams {
-  type: CharactersActionTypes.APLY_CHARACTERS_SEARCH_PARAMS;
+interface SetCharactersSearchParams {
+  type: CharactersActionTypes.SET_CHARACTERS_SEARCH_PARAMS;
   payload: {
     searchText: string;
     currentPage: number;
@@ -52,9 +52,9 @@ interface AplyCharactersSearchParams {
 }
 
 export type CharactersAction =
-  | FetchCharactersAction
-  | FetchCharactersSuccessAction
-  | FetchCharactersErrorAction
-  | SetCharactersSearchTextAction
+  | FetchCharacters
+  | FetchCharactersSuccess
+  | FetchCharactersError
+  | SetCharactersSearchText
   | SetCharactersCurrentPage
-  | AplyCharactersSearchParams;
+  | SetCharactersSearchParams;

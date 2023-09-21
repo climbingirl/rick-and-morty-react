@@ -1,11 +1,10 @@
 import { useAppSelector } from '../redux/hooks/useAppSelector';
-import { useAppDispatch } from '../redux/hooks/useAppDispatch';
+import { useActions } from '../redux/hooks/useActions';
 import './Pagination.scss';
-import { setCharactersCurrentPageAction } from '../redux/characters/actions';
 
 function Pagination(props: { totalPage: number }) {
   const { currentPage } = useAppSelector((state) => state.characters);
-  const dispatch = useAppDispatch();
+  const { setCharactersCurrentPage } = useActions();
 
   const paginationItems: JSX.Element[] = [];
   for (let i = 1; i <= props.totalPage; i++) {
@@ -23,7 +22,7 @@ function Pagination(props: { totalPage: number }) {
   function handleClick(e: React.MouseEvent<HTMLElement>) {
     const target = e.target as HTMLElement;
     const page = Number(target.dataset.id);
-    dispatch(setCharactersCurrentPageAction(page));
+    setCharactersCurrentPage(page);
   }
 
   return (

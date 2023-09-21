@@ -41,3 +41,13 @@ export interface Character {
   url: string;
   created: string;
 }
+
+export interface CharactersAPIResponse {
+  info: {
+    count: number;
+    next: string;
+    pages: number;
+    prev: null | string;
+  };
+  results: Character[];
+}

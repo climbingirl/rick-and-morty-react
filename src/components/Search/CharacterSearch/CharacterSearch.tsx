@@ -1,18 +1,17 @@
 import { useAppSelector } from '../../redux/hooks/useAppSelector';
-import { useAppDispatch } from '../../redux/hooks/useAppDispatch';
 import { createRef } from 'react';
-import { setCharactersSearchTextAction } from '../../redux/characters/actions';
+import { useActions } from '../../redux/hooks/useActions';
 import '../SearchForm.scss';
 
 function CharacterSearch() {
   const { searchText } = useAppSelector((state) => state.characters);
-  const dispatch = useAppDispatch();
+  const { setCharactersSearchText } = useActions();
   const inputRef = createRef<HTMLInputElement>();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const text = inputRef.current?.value || '';
-    dispatch(setCharactersSearchTextAction(text));
+    setCharactersSearchText(text);
   }
 
   return (
