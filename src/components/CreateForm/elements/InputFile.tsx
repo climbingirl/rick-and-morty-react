@@ -39,7 +39,6 @@ function InputFile(props: InputFileProps) {
           className="create__input create__input_photo"
           id="input-photo"
           {...rest}
-          name="photo"
           ref={(e) => {
             ref(e);
             photoInput.current = e;

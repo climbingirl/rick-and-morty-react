@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormValues } from '../../../types/form';
 import { CardElement } from '../../../types/models';
+import { formatDate } from '../../../utils/date.helper';
 import InputDate from '../elements/InputDate';
 import InputText from '../elements/InputText';
 import InputFile from '../elements/InputFile';
@@ -9,12 +10,10 @@ import InputsGender from '../elements/InputsGender';
 import CountrySelect from '../elements/CountrySelect';
 import ConsentCheckbox from '../elements/ConsentCheckbox';
 import './CreateForm.scss';
+import { useActions } from '../../redux/hooks/useActions';
 
-interface CreateFormProps {
-  onCardCreate: (card: CardElement) => void;
-}
-
-function CreateForm(props: CreateFormProps) {
+function CreateForm() {
+  const { setCreateCard } = useActions();
   const [isStatusShown, setIsStatusShown] = useState(false);
 
   useEffect(() => {
@@ -47,15 +46,8 @@ function CreateForm(props: CreateFormProps) {
       consent: data.consent,
     };
     setIsStatusShown(true);
-    props.onCardCreate(cardData);
+    setCreateCard(cardData);
     reset();
-  }
-
-  function formatDate(date: Date): string {
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
   }
 
   return (
