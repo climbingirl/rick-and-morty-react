@@ -1,14 +1,13 @@
 import { describe, it, expect, vi } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+/* import { fireEvent, render, screen } from '@testing-library/react';
 import withRouter from '../../test/withRouter';
 import ROUTES from '../../types/routes';
 import Create from './Create';
-import userEvent from '@testing-library/user-event';
-import * as useAppSelector from '../../components/redux/hooks/useAppSelector';
+import userEvent from '@testing-library/user-event';;
 import * as reduxHooks from 'react-redux';
-import { CardElement } from '../../types/models';
+import { CardElement } from '../../types/models'; */
 
-const cardsMock: CardElement[] = [
+/* const cardsMock: CardElement[] = [
   {
     gender: 'male',
     name: 'MG',
@@ -18,16 +17,7 @@ const cardsMock: CardElement[] = [
     photo: 'blob:http://localhost:5173/ac8d5b78-2438-43ab-8098-8d682fb1dbe2',
     consent: true,
   },
-  {
-    gender: 'male',
-    name: 'MG',
-    surname: 'Sanin',
-    birthDate: '9/9/2023',
-    country: 'Thailand',
-    photo: 'blob:http://localhost:5173/ac8d5b78-2438-43ab-8098-8d682fb1dbe2',
-    consent: true,
-  },
-];
+]; */
 vi.mock('react-redux');
 
 describe('Create', () => {

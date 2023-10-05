@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { useAppSelector } from '../../components/redux/hooks/useAppSelector';
 import { useSearchParams } from 'react-router-dom';
-import { useActions } from '../../components/redux/hooks/useActions';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { fetchCharacters, setInitSearchParams } from '../../redux/charactersSlice';
 import CharacterList from '../../components/CharacterList/CharacterList';
 import CharacterSearch from '../../components/Search/CharacterSearch/CharacterSearch';
 import CharacterPopup from '../../components/CharacterPopup/CharacterPopup';
@@ -11,34 +11,34 @@ import './Characters.scss';
 
 function Characters() {
   const {
-    isLoading,
+    status,
     characters,
     totalPage,
     error,
     searchText,
     currentPage,
-    isSearchParamsApplied,
+    initialSearchParamsApplied,
   } = useAppSelector((state) => state.characters);
+  const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const nameParam = searchParams.get('name') || '';
   const pageParam = searchParams.get('page') || '';
-  const { fetchCharacters, setCharactersSearchParams } = useActions();
 
   useEffect(() => {
-    if (!isSearchParamsApplied) {
+    if (!initialSearchParamsApplied) {
       const pageNumber = Number(pageParam) || 1;
-      setCharactersSearchParams(nameParam, pageNumber);
+      dispatch(setInitSearchParams({ name: nameParam, page: pageNumber }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (isSearchParamsApplied) {
-      fetchCharacters(searchText, currentPage);
+    if (initialSearchParamsApplied) {
+      dispatch(fetchCharacters({ name: searchText, page: currentPage }));
       applyCurrentSearchParams();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchText, currentPage, isSearchParamsApplied]);
+  }, [searchText, currentPage, initialSearchParamsApplied]);
 
   function applyCurrentSearchParams() {
     if (searchText) {
@@ -54,7 +54,7 @@ function Characters() {
     setSearchParams(searchParams);
   }
 
-  if (isLoading) {
+  if (status === 'loading') {
     return (
       <div className="characters__loader">
         <Loader />
@@ -65,14 +65,14 @@ function Characters() {
   return (
     <section className="characters container" aria-label="Api page">
       <CharacterSearch />
-      {error ? (
+      {status === 'failed' ? (
         <div className="characters__empty" aria-label="Characters not found">
           {error}
         </div>
       ) : (
         <>
           <CharacterList characters={characters} />
-          <Pagination totalPage={totalPage} />
+          <Pagination totalPage={totalPage} currentPage={currentPage} />
           <CharacterPopup />
         </>
       )}

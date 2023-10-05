@@ -1,7 +1,7 @@
 import CreateForm from '../../components/CreateForm/Form/CreateForm';
 import Card from '../../components/CreateForm/Card/Card';
+import { useAppSelector } from '../../redux/hooks';
 import './Create.scss';
-import { useAppSelector } from '../../components/redux/hooks/useAppSelector';
 
 function Create() {
   const { cards } = useAppSelector((state) => state.create);

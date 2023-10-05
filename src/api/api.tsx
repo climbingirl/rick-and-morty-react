@@ -9,7 +9,7 @@ export const charactersAPI = {
     if (page) search.page = String(page);
     const searchParams = new URLSearchParams(search);
     const response = await fetch(`${baseUrl}?${searchParams}`);
-    if (response.ok !== true) throw new Error('Сharacterы request error');
+    if (response.ok !== true) throw new Error('Сharacters request error');
     const data: CharactersAPIResponse = await response.json();
     return data;
   },

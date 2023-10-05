@@ -7,7 +7,7 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from './components/redux/store';
+import store from './redux/store';
 import ROUTES from './types/routes';
 import App from './components/App/App';
 import About from './pages/About/About';
@@ -22,7 +22,7 @@ const router = createBrowserRouter(
     <Route path={ROUTES.ROOT} element={<App />}>
       <Route index element={<Home />} />
       <Route path={ROUTES.ABOUT} element={<About />} />
-      <Route path={ROUTES.CREATE} element={<Create />} />
+      {<Route path={ROUTES.CREATE} element={<Create />} />}
       <Route path={ROUTES.API} element={<Characters />} />
       <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
       <Route path="/*" element={<Navigate to={ROUTES.NOT_FOUND} />} />

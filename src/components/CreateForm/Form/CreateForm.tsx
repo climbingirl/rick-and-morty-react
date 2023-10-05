@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useAppDispatch } from '../../../redux/hooks';
+import { addCard } from '../../../redux/createSlice';
 import { FormValues } from '../../../types/form';
 import { CardElement } from '../../../types/models';
 import { formatDate } from '../../../utils/date.helper';
@@ -10,11 +12,10 @@ import InputsGender from '../elements/InputsGender';
 import CountrySelect from '../elements/CountrySelect';
 import ConsentCheckbox from '../elements/ConsentCheckbox';
 import './CreateForm.scss';
-import { useActions } from '../../redux/hooks/useActions';
 
 function CreateForm() {
-  const { setCreateCard } = useActions();
   const [isStatusShown, setIsStatusShown] = useState(false);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (isStatusShown) {
@@ -46,7 +47,7 @@ function CreateForm() {
       consent: data.consent,
     };
     setIsStatusShown(true);
-    setCreateCard(cardData);
+    dispatch(addCard(cardData));
     reset();
   }
 

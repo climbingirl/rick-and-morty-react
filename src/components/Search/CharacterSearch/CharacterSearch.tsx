@@ -1,17 +1,20 @@
-import { useAppSelector } from '../../redux/hooks/useAppSelector';
-import { createRef } from 'react';
-import { useActions } from '../../redux/hooks/useActions';
+import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { setSearchText } from '../../../redux/charactersSlice';
 import '../SearchForm.scss';
 
 function CharacterSearch() {
   const { searchText } = useAppSelector((state) => state.characters);
-  const { setCharactersSearchText } = useActions();
-  const inputRef = createRef<HTMLInputElement>();
+  const dispatch = useAppDispatch();
+  const [text, setText] = useState(searchText);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const text = inputRef.current?.value || '';
-    setCharactersSearchText(text);
+    dispatch(setSearchText(text));
+  }
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setText(e.target.value);
   }
 
   return (
@@ -19,10 +22,10 @@ function CharacterSearch() {
       <div className="search__inner">
         <input
           className="search__input"
-          defaultValue={searchText}
-          ref={inputRef}
+          value={text}
           type="text"
           placeholder="Enter character name"
+          onChange={handleChange}
         />
         <button className="search__btn" type="submit">
           Search

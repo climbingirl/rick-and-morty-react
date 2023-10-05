@@ -3,8 +3,8 @@ import { render, screen } from '@testing-library/react';
 import CharacterSearch from './CharacterSearch';
 import ROUTES from '../../../types/routes';
 import withRouter from '../../../test/withRouter';
-import * as useAppDispatch from '../../redux/hooks/useAppDispatch';
-import * as useAppSelector from '../../redux/hooks/useAppSelector';
+import * as useAppDispatch from '../../../redux/hooks';
+import * as useAppSelector from '../../../redux/hooks';
 
 describe('CharacterSearch', () => {
   const mockedDispatch = vi.spyOn(useAppDispatch, 'useAppDispatch');
